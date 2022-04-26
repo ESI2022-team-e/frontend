@@ -45,7 +45,7 @@
         </div>
         <div class="card-footer text-muted">
           <router-link to="/register" class="nav-link">
-           <i class="fa-solid fa-user-plus"></i> New User? Register here!
+           <i class="fa-solid fa-user-plus"></i> New Driver? Register here!
           </router-link>
   </div>
       </div>
@@ -122,5 +122,10 @@ label {
 
 .error-feedback {
   color: #842029;
+}
+
+.btn-success{
+  background-color:#34d484;
+  border-color: #34d484;
 }
 </style>

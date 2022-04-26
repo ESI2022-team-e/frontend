@@ -6,7 +6,7 @@
     <!-- Card -->
       <div class="card h-100 login-card">
         <div class="card-header bg-dark text-white">
-           <i class="fa-solid fa-user-plus"></i> Register here!
+           <i class="fa-solid fa-user-plus"></i> Become a driver!
         </div>
         <div class="card-body">
           <h4 class="card-title"> User Registration!</h4>
@@ -51,7 +51,7 @@
         </div>
         <div class="card-footer text-muted">
           <router-link to="/login" class="nav-link">
-           <i class="fa-solid fa-user-lock"></i> Existing User? Login here!
+           <i class="fa-solid fa-user-lock"></i> Existing Driver? Login here!
           </router-link>
   </div>
       </div>
@@ -152,4 +152,10 @@ label {
 .error-feedback {
  color: #842029;
 }
+
+.btn-primary.btn-block{
+  background-color:#34d484;
+  border-color: #34d484;
+}
+
 </style>

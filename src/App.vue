@@ -5,12 +5,12 @@
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link to="/home" class="nav-link">
-            <font-awesome-icon icon="home" /> Home
+            <font-awesome-icon icon="home" />Home
           </router-link>
         </li>
         <li class="nav-item">
           <router-link to="/cars" class="nav-link">
-            <font-awesome-icon icon="home" /> Cars
+            <font-awesome-icon icon="home" />Cars
           </router-link>
         </li>
         <li v-if="showManagerBoard" class="nav-item">
@@ -24,7 +24,7 @@
       <div v-if="!currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
           <router-link to="/register" class="nav-link">
-           <i class="fa-solid fa-user-plus"></i> Register
+           <i class="fa-solid fa-user-plus"></i> Become a driver
           </router-link>
         </li>
         <li class="nav-item">

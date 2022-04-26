@@ -7,7 +7,7 @@
 <p>Nullam orci ante, maximus vel tempor cursus, fermentum ac ante. In vitae porta felis. Curabitur id rutrum lorem. Morbi consequat nisi hendrerit lobortis lobortis. Quisque pellentesque pharetra dui, id lobortis odio tempor in. Nunc semper quam metus, eget laoreet neque suscipit vitae. Sed risus lacus, eleifend eu iaculis eget, semper ut enim. Duis at cursus ex. Pellentesque sed gravida quam, non finibus ante. In pharetra nunc a turpis iaculis, id commodo mi pretium. Donec tristique commodo odio quis volutpat. Nullam malesuada ligula vel diam congue imperdiet. Ut cursus efficitur lacus, vel scelerisque eros. Nunc at volutpat urna. </p>
 
 <p class="lead">
-    <a class="btn btn-primary btn-lg" href="/register" role="button">Create Account</a> &nbsp; <a class="btn btn-secondary btn-lg" href="/login" role="button">Login</a>
+    <a class="btn btn-primary btn-lg" href="/register" role="button">Become a driver</a> &nbsp; <a class="btn btn-secondary btn-lg" href="/login" role="button">Login</a>
   </p>
     </header>
   </div>
@@ -40,3 +40,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+a.btn.btn-primary.btn-lg{
+  background-color:#34d484;
+  border-color: #34d484;
+}
+</style>
