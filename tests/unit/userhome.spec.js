@@ -1,5 +1,5 @@
 import {shallowMount} from '@vue/test-utils'
-import UserHome from '@/components/UserHome.vue'
+import UserHome from '@/views/UserHome.vue'
 
 describe('UserHome.vue', () => {
     it('renders Lorem ipsum when passed', () => {
