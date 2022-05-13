@@ -51,10 +51,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a.btn.btn-primary.btn-lg {
-  background-color: #34d484;
-  border-color: #34d484;
-}
-</style>

@@ -1,0 +1,12 @@
+/*
+This file imports all the other sass files
+and is imported by main.js to use them.
+This helps organize the styles better and
+import them all from one file after.
+ */
+
+/* All the sub styles filenames begin with _*/
+
+@import '_shared.scss';
+@import '_variables.scss';
+@import '_cars.scss';

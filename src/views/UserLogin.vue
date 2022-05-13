@@ -119,12 +119,5 @@ label {
   margin-top: 10px;
 }
 
-.error-feedback {
-  color: #842029;
-}
 
-.btn-success {
-  background-color: #34d484;
-  border-color: #34d484;
-}
 </style>

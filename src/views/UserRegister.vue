@@ -136,26 +136,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-.row {
-  height: 100vh;
-}
-
-label {
-  display: block;
-  margin-top: 10px;
-}
-
-
-.error-feedback {
-  color: #842029;
-}
-
-.btn-primary.btn-block {
-  background-color: #34d484;
-  border-color: #34d484;
-}
-
-</style>
