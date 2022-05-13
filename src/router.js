@@ -1,60 +1,60 @@
-import { createWebHistory, createRouter } from "vue-router";
-import UserHome from "./components/UserHome.vue";
-import UserLogin from "./components/UserLogin.vue";
-import UserRegister from "./components/UserRegister.vue";
+import {createRouter, createWebHistory} from "vue-router";
+import UserHome from "./views/UserHome.vue";
+import UserLogin from "./views/UserLogin.vue";
+import UserRegister from "./views/UserRegister.vue";
 
 // lazy-loaded
-const UserProfile = () => import("./components/UserProfile.vue")
-const BoardManager = () => import("./components/BoardManager.vue")
-const BoardCustomer = () => import("./components/BoardCustomer.vue")
-const CarsList = () => import("./components/CarsList.vue")
+const UserProfile = () => import("./views/UserProfile.vue")
+const BoardManager = () => import("./views/BoardManager.vue")
+const BoardCustomer = () => import("./views/BoardCustomer.vue")
+const CarsList = () => import("./views/CarsList.vue")
 
 const routes = [
-  {
-    path: "/",
-    name: "home",
-    component: UserHome,
-  },
-  {
-    path: "/home",
-    component: UserHome,
-  },
-  {
-    path: "/login",
-    component: UserLogin,
-  },
-  {
-    path: "/register",
-    component: UserRegister,
-  },
-  {
-    path: "/profile",
-    name: "profile",
-    // lazy-loaded
-    component: UserProfile,
-  },
-  {
-    path: "/manager",
-    name: "manager",
-    // lazy-loaded
-    component: BoardManager,
-  },
-  {
-    path: "/user",
-    name: "user",
-    // lazy-loaded
-    component: BoardCustomer,
-  },
-  {
-    path: "/cars",
-    name: "cars",
-    // lazy-loaded
-    component: CarsList,
-  },
+    {
+        path: "/",
+        name: "home",
+        component: UserHome,
+    },
+    {
+        path: "/home",
+        component: UserHome,
+    },
+    {
+        path: "/login",
+        component: UserLogin,
+    },
+    {
+        path: "/register",
+        component: UserRegister,
+    },
+    {
+        path: "/profile",
+        name: "profile",
+        // lazy-loaded
+        component: UserProfile,
+    },
+    {
+        path: "/manager",
+        name: "manager",
+        // lazy-loaded
+        component: BoardManager,
+    },
+    {
+        path: "/user",
+        name: "user",
+        // lazy-loaded
+        component: BoardCustomer,
+    },
+    {
+        path: "/cars",
+        name: "cars",
+        // lazy-loaded
+        component: CarsList,
+    },
 ];
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+    history: createWebHistory(),
+    routes,
 });
 router.beforeEach((to, from, next) => {
     const publicPages = ['/login', '/register', '/home', '/cars']; // TODO: remove pages that need authentixation from here
@@ -63,9 +63,9 @@ router.beforeEach((to, from, next) => {
     // trying to access a restricted page + not logged in
     // redirect to login page
     if (authRequired && !loggedIn) {
-      next('/login');
+        next('/login');
     } else {
-      next();
+        next();
     }
-  });
+});
 export default router;

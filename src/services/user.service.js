@@ -4,17 +4,17 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:8081/api/test';
 
 class UserService {
-  getPublicContent() {
-    return axios.get(API_URL + 'all');
-  }
+    getPublicContent() {
+        return axios.get(API_URL + 'all');
+    }
 
-  getCustomerBoard() {
-    return axios.get(API_URL + 'customer', { headers: authHeader() });
-  }
+    getCustomerBoard() {
+        return axios.get(API_URL + 'customer', {headers: authHeader()});
+    }
 
-  getManagerBoard() {
-    return axios.get(API_URL + 'manager', { headers: authHeader() });
-  }
+    getManagerBoard() {
+        return axios.get(API_URL + 'manager', {headers: authHeader()});
+    }
 }
 
 export default new UserService();
