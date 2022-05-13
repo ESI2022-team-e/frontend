@@ -22,10 +22,13 @@
         <li class="nav-item">
           <router-link v-if="currentUser" to="/user" class="nav-link">User Page</router-link>
         </li>
+        <li class="nav-item">
+          <router-link v-if="currentUser" to="/invoices" class="nav-link">Invoices</router-link>
+        </li>
       </div>
 
       <!-- Right aligned nav items -->
-      <div v-if="!currentUser" class="navbar-nav ml-auto">
+      <div v-if="!currentUser" class="navbar-nav ms-auto">
         <li class="nav-item">
           <router-link to="/register" class="nav-link">
             <i class="fa-solid fa-user-plus"></i> Become a driver
@@ -38,7 +41,7 @@
         </li>
       </div>
 
-      <div v-if="currentUser" class="navbar-nav ml-auto">
+      <div v-if="currentUser" class="navbar-nav ms-auto">
         <li class="nav-item">
           <router-link to="/profile" class="nav-link">
             <i class="fa-solid fa-user-shield"></i>
