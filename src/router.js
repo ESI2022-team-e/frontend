@@ -2,7 +2,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import UserHome from "./views/UserHome.vue";
 import UserLogin from "./views/UserLogin.vue";
 import UserRegister from "./views/UserRegister.vue";
-import CarDetails from "@/views/CarDetails";
+import CarPage from "@/views/CarPage";
 import InvoicesList from "./views/InvoicesList.vue";
 import InvoicePage from "./views/InvoicePage.vue";
 
@@ -68,10 +68,10 @@ const routes = [
         params: true
     },
     {
-        path: "/car/:carId/details",
-        name: "details",
-        component: CarDetails,
-        props: true,
+        path: "/car/:id",
+        name: "car",
+        component: CarPage,
+        params: true,
     }
 ];
 const router = createRouter({

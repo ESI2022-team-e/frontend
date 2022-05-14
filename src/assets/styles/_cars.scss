@@ -41,3 +41,11 @@
   border: 5px solid $primaryBorder;
   margin: 15px 35px 15px 15px;
 }
+
+.container-with-padding {
+  padding: 20px 0 0 0;
+
+  .btn.btn-primary {
+    margin-left: 20px;
+  }
+}
