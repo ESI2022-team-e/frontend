@@ -2,7 +2,8 @@ import {createRouter, createWebHistory} from "vue-router";
 import UserHome from "./views/UserHome.vue";
 import UserLogin from "./views/UserLogin.vue";
 import UserRegister from "./views/UserRegister.vue";
-import InvoicePage from "@/views/InvoicePage";
+import InvoicesList from "./views/InvoicesList.vue";
+import InvoicePage from "./views/InvoicePage.vue";
 
 // lazy-loaded
 const UserProfile = () => import("./views/UserProfile.vue")
@@ -56,7 +57,14 @@ const routes = [
         path: "/invoices",
         name: "invoices",
         // lazy-loaded
+        component: InvoicesList,
+    },
+    {
+        path: "/invoice/:id",
+        name: "invoice",
+        // lazy-loaded
         component: InvoicePage,
+        params: true
     },
 ];
 const router = createRouter({
