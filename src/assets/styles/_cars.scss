@@ -40,6 +40,9 @@
   text-transform: uppercase;
   border: 5px solid $primaryBorder;
   margin: 15px 35px 15px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container-with-padding {
