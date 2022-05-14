@@ -36,7 +36,6 @@ export default {
     getAllCars(){
       CarService.getAllCars().then(
         (response) => {
-          console.log(response);
           this.cars = response.data;
         },
         (error) => {
