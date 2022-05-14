@@ -10,7 +10,11 @@
     ></VerticalTableComponent>
     <div class='container-with-padding'>
      <router-link class="btn btn-nav" role="button"
-                       :to="{ name: 'cars'}">Back</router-link>
+                       :to="{ name: 'cars'}">Back</router-link><div class="divider"/>
+    <router-link class="btn btn-nav" role="button"
+                       :to="{ name: 'car', params: {id: car.id} }">Edit</router-link><div class="divider"/>
+    <router-link class="btn btn-nav" role="button"
+                       :to="{ name: 'car', params: {id: car.id} }">Delete</router-link>
     </div>
   </div>
 </template>
