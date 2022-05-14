@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header class="jumbotron">
-      <h3>{{ content }}</h3>
+      <h1>{{ content }}</h1>
       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod purus a nisi placerat, ac pulvinar est
         pulvinar. Integer volutpat libero ac quam aliquam pulvinar. Duis sit amet nunc elementum, vehicula lectus ut,
         commodo mi. Maecenas eleifend vel sem vitae congue. Aliquam pulvinar, purus eu molestie viverra, mi quam
@@ -51,10 +51,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a.btn.btn-primary.btn-lg {
-  background-color: #34d484;
-  border-color: #34d484;
-}
-</style>
