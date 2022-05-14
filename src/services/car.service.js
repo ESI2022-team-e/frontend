@@ -6,6 +6,9 @@ class CarService {
     getAllCars() {
         return axios.get(API_BASE_URL + '/cars');
     }
+    getCar(carId) {
+        return axios.get(API_BASE_URL + '/cars/' + carId)
+    }
 }
 
 export default new CarService();

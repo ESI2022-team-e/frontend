@@ -3,6 +3,7 @@ import UserHome from "./views/UserHome.vue";
 import UserLogin from "./views/UserLogin.vue";
 import UserRegister from "./views/UserRegister.vue";
 import InvoicePage from "@/views/InvoicePage";
+import CarDetails from "@/views/CarDetails";
 
 // lazy-loaded
 const UserProfile = () => import("./views/UserProfile.vue")
@@ -58,6 +59,12 @@ const routes = [
         // lazy-loaded
         component: InvoicePage,
     },
+    {
+        path: "/car/:carId/details",
+        name: "details",
+        component: CarDetails,
+        props: true,
+    }
 ];
 const router = createRouter({
     history: createWebHistory(),

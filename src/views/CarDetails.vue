@@ -1,8 +1,7 @@
 <template>
   <div>
     <section class="main-container">
-      <h1>Car Catalogue </h1>
-      <div class="car-profile" v-for="car in cars" :key="car.id">
+      <h1>Car details </h1>
         <img alt="car_img" src="../assets/img/images.jpg">
         <h2>Car {{ car.mark }} <br>
           {{ car.model }}</h2>
@@ -12,10 +11,7 @@
             Fuel type: {{ car.fuel_type }} <br>
             Daily cost: {{ car.daily_cost }} <br>
             Year: {{ car.year }} </p>
-          <router-link :to="{ name: 'details', params: { carId: car.id }}">SELECT</router-link>
-          <button class="select-button" @click="goToCar(car.id)"> Select</button>
         </div>
-      </div>
     </section>
   </div>
 </template>
@@ -25,19 +21,19 @@
 import CarService from "@/services/car.service";
 
 export default {
-  name: 'CarsList',
+  name: 'CarDetails',
 
   data() {
-    const cars = null
-    return {cars}
+    const car = null
+    return {car}
   },
 
   methods: { 
-    getAllCars(){
-      CarService.getAllCars().then(
+    getCar(){
+      CarService.getCar().then(
         (response) => {
           console.log(response);
-          this.cars = response.data;
+          this.car = response.data;
         },
         (error) => {
           this.content =
@@ -48,14 +44,11 @@ export default {
             error.toString();
         }
       );
-    },
-    goToCar(id){
-      this.$router.push({name:'car', params: {carId: id}});
     }
   },
 
   created() {
-    this.getAllCars()
+    this.getCar()
   }
 }
 </script>
