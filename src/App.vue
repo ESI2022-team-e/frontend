@@ -2,6 +2,7 @@
   <div id="app">
     <NavBar/>
   </div>
+  <notifications position="top center"/>
 </template>
 
 <script>

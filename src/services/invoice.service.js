@@ -13,6 +13,27 @@ class InvoiceService {
             return axios.get(API_BASE_URL + '/invoices', {headers: authHeader()});
     }
 
+    getInvoice(invoiceId) {
+        return axios.get(
+            API_BASE_URL +
+            '/invoices/' + invoiceId,
+            {headers: authHeader()})
+    }
+
+    payInvoice(customerId, rentalId, invoiceId) {
+        return axios({
+            method: 'put',
+            url: API_BASE_URL +
+                '/customers/' + customerId +
+                '/rentals/' + rentalId +
+                '/invoices/' + invoiceId,
+            headers: authHeader(),
+            data: {
+                status: 'PAID'
+            }
+        })
+    }
+
 }
 
 export default new InvoiceService();

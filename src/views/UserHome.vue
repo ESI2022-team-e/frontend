@@ -17,8 +17,8 @@
         congue imperdiet. Ut cursus efficitur lacus, vel scelerisque eros. Nunc at volutpat urna. </p>
 
       <p class="lead">
-        <a class="btn btn-primary btn-lg" href="/register" role="button">Become a driver</a> &nbsp; <a
-          class="btn btn-secondary btn-lg" href="/login" role="button">Login</a>
+        <a class="btn btn-primary" href="/register" role="button">Become a driver</a> &nbsp; <a
+          class="btn btn-secondary" href="/login" role="button">Login</a>
       </p>
     </header>
   </div>
