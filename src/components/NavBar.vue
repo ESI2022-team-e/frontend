@@ -6,14 +6,18 @@
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link to="/home" class="nav-link">
-            <font-awesome-icon icon="home"/>
+            <i class="fa-solid fa-house"></i>
             Home
           </router-link>
         </li>
         <li class="nav-item">
           <router-link to="/cars" class="nav-link">
-            <font-awesome-icon icon="home"/>
-            Cars
+            <i class="fa-solid fa-car"></i> Cars
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link v-if="currentUser" to="/invoices" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i> Invoices
           </router-link>
         </li>
         <li v-if="showManagerBoard" class="nav-item">
@@ -21,9 +25,6 @@
         </li>
         <li class="nav-item">
           <router-link v-if="currentUser" to="/user" class="nav-link">User Page</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link v-if="currentUser" to="/invoices" class="nav-link">Invoices</router-link>
         </li>
       </div>
 
@@ -50,7 +51,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link btn btn-danger text-light" @click.prevent="logOut">
-            <i class="fa-solid fa-circle-xmark"></i> Exit
+            <i class="fa-solid fa-circle-xmark"></i> Logout
           </a>
         </li>
       </div>
