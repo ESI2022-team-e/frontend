@@ -9,7 +9,8 @@
         :key='car'
     ></VerticalTableComponent>
     <div class='container-with-padding'>
-      <a class="btn btn-nav" role="button" href="/cars">Back</a>
+     <router-link class="btn btn-nav" role="button"
+                       :to="{ name: 'cars'}">Back</router-link>
     </div>
   </div>
 </template>
