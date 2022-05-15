@@ -1,21 +1,26 @@
 <template>
   <div id="car">
-      <h1>Car</h1>
+      <h1>Edit Car</h1>
   </div>
-  <div>
+    <div>
     <VerticalTableComponent
         :item='car'
         :headers='headers'
         :key='car'
     ></VerticalTableComponent>
-    <div class='container-with-padding'>
-     <router-link class="btn btn-nav" role="button"
-                       :to="{ name: 'cars'}">Back</router-link><div class="divider"/>
-    <router-link v-if="isManager" class="btn btn-nav" role="button"
-                       :to="{ name: 'editCar', params: {id: car.id} }">Edit</router-link><div class="divider"/>
-    <button v-if="isManager" class="btn btn-nav" role="button" v-on:click='deleteCar'>Delete</button>
     </div>
-  </div>
+    <br>
+    <p>Set a new licence plate:</p>
+    <input placeholder="" />
+    <br>
+    <br>
+    <p>Set a new daily cost:</p>
+    <input placeholder="" />
+    <div class='container-with-padding'>
+    <router-link class="btn btn-nav" role="button"
+                       :to="{ name: 'cars'}">Back</router-link><div class="divider"/>
+    <button v-if="isManager" class="btn btn-nav" role="button" v-on:click='updateCar'>Save changes</button>
+    </div>
 </template>
 
 <script>
@@ -25,9 +30,9 @@ import VerticalTableComponent from "@/components/VerticalTableComponent";
 import {notify} from "@kyvg/vue3-notification";
 
 export default {
-  name: 'CarPage',
+  name: 'EditCarPage',
   components: {
-    VerticalTableComponent
+      VerticalTableComponent
   },
   computed: {
       isManager () {
@@ -73,23 +78,21 @@ export default {
       });
     },
 
-    deleteCar(){
-      CarService.deleteCar(this.carId).then(
-        (response)=>{
-          this.notification = response.data;
-          this.notifySuccess();
-          this.$router.push("/cars");
+    updateCar(){
+        CarService.updateCar(this.car).then(
+        (response) => {
+          this.car = response.data;
         },
         (error) => {
-          this.content = 
-            (error.response &&
+          this.content =
+            (error.response && 
                 error.response.data &&
-                    error.response.data.message) ||
-                error.message ||
-                error.toString();
+                error.response.data.message) ||
+            error.message ||
+            error.toString();
         }
       );
-    }
+    },
   },
 
   created() {
