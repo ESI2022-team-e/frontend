@@ -77,7 +77,8 @@ export default {
       CarService.deleteCar(this.carId).then(
         (response)=>{
           this.notification = response.data;
-          this.notifySuccess()
+          this.notifySuccess();
+          this.$router.push("/cars");
         },
         (error) => {
           this.content = 
