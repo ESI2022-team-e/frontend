@@ -3,6 +3,7 @@ import UserHome from "./views/UserHome.vue";
 import UserLogin from "./views/UserLogin.vue";
 import UserRegister from "./views/UserRegister.vue";
 import CarPage from "@/views/CarPage";
+import RequestList from "@/views/RequestList.vue";
 import InvoicesList from "./views/InvoicesList.vue";
 import InvoicePage from "./views/InvoicePage.vue";
 
@@ -53,6 +54,11 @@ const routes = [
         name: "cars",
         // lazy-loaded
         component: CarsList,
+    },
+    {
+        path: "/requests",
+        name: "requests",
+        component: RequestList,
     },
     {
         path: "/invoices",
