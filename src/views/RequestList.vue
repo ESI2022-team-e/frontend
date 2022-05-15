@@ -3,7 +3,13 @@
     <h1>Requests</h1>
   </div>
 
-  <TableComponent :items='requests' :headers='headers'></TableComponent>
+  <TableComponent
+      :items='requests'
+      :headers='headers'
+      :show-button=true
+      :button-text='buttonText'
+      :page='page'>
+  </TableComponent>
 </template>
 
 <script>
@@ -12,7 +18,7 @@ import TableComponent from "@/components/TableComponent";
 import RequestService from "@/services/request.service"
 
 export default {
-  name: "Requests",
+  name: "RequestList",
   components: {
     TableComponent
   },
@@ -20,13 +26,16 @@ export default {
     const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id",
       "Customer Id"]
     const requests = null
-    return {requests, headers}
+    const buttonText = "Details"
+    const page = "request"
+    return {headers, requests, buttonText, page}
   },
   methods: {
     getAllRequests() {
       RequestService.getAllRequests().then(
           (response) => {
             this.requests = response.data;
+            localStorage.setItem('requests', response.data);
           },
           (error) => {
             this.content =
@@ -44,7 +53,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
