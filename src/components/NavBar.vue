@@ -20,6 +20,11 @@
             <i class="fa-solid fa-file-lines"></i> Invoices
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link v-if="currentUser" to="/rentals" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i> Rentals
+          </router-link>
+        </li>
         <li v-if="showManagerBoard" class="nav-item">
           <router-link to="/manager" class="nav-link">Manager Page</router-link>
         </li>
