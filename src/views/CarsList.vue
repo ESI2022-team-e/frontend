@@ -48,7 +48,7 @@
             </button>
           </div>
         </div>
-        <div v-show="requestForm">
+        <div v-show="requestForm" :key="requestForm">
           <SendRequestContainer
               v-if="requestForm"
               :car-mark-model='car.mark + " " + car.model'
@@ -111,7 +111,8 @@ export default {
     },
 
     showRequestForm() {
-      this.reqestForm = true;
+      console.log("Create request")
+      this.requestForm = true;
     }
 
   },

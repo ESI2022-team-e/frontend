@@ -38,15 +38,14 @@ class RequestService {
             method: 'post',
             url: API_BASE_URL +
                 '/cars/' + carId +
-                '/requests/',
+                '/requests',
             headers: authHeader(),
             data: {
-                car_id: carId,
                 pickupDatetime: pickupdate,
                 dropoffDatetime: dropoffdate,
                 pickupLocation: pickuploc,
                 dropoffLocation: dropoffloc,
-                status: 'UPCOMING'
+                status: 'PENDING'
             }
         })
     }

@@ -5,12 +5,12 @@
       <h4>Create rental request</h4>
     </div>
 
-    <div
+<!--<div
         v-if="message"
         class="alert"
         :class="successful ? 'alert-success' : 'alert-danger'"
     >{{ message }}
-    </div>
+    </div>-->
 
     <div>
       <Form @submit="postRequest">
