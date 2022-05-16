@@ -14,7 +14,6 @@ class CarService {
         return axios.delete(API_BASE_URL + '/cars/' + carId, {headers: authHeader()})
     }
     updateCar(carId, updatedValues) {
-        console.log(updatedValues)
         return axios({
             method: 'put',
             url: API_BASE_URL + '/cars/' + carId,

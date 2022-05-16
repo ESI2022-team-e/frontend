@@ -13,15 +13,15 @@
     <Form @submit="updateCar">
             <div>
               <div class="form-group">
-                <label for="licence_plate">Set new licence plate</label>
-                <input type="text" v-model="formData.licence_plate" name="licence_plate" class="form-control" placeholder="Set a new daily cost" />
+                <label for="licence_plate">New licence plate:</label>
+                <input type="text" v-model="formData.licence_plate" class="form-input" name="licence_plate" />
               </div>
               <div class="form-group">
-                <label for="daily_cost">Set new daily cost</label>
-                <input type="number" v-model="formData.daily_cost" name="daily_cost" class="form-control" placeholder="Set a new daily cost"/>
+                <label for="daily_cost">New daily cost:</label>
+                <input type="number" v-model="formData.daily_cost" class="form-input" name="daily_cost"/>
               </div>
             </div>
-            <input type="submit" v-if="isManager" class="btn btn-nav" value="Save changes"/>
+      <input type="submit" v-if="isManager" class="btn btn-nav" value="Save changes"/>
     </Form>
     <div class='container-with-padding'>
     <router-link class="btn btn-nav" role="button"
@@ -96,7 +96,6 @@ export default {
     },
 
     updateCar(){
-      console.log(this.formData)
       CarService.updateCar(this.carId, this.formData).then(
         (response) => {
           this.notification = response.data;
