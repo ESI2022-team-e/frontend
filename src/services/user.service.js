@@ -15,6 +15,12 @@ class UserService {
     getManagerBoard() {
         return axios.get(API_URL + '/manager', {headers: authHeader()});
     }
+    getAllCustomers(){
+        return axios.get('http://localhost:8081/api' + '/customers',{headers: authHeader()})
+    }
+    getCustomer(customerId){
+        return axios.get('http://localhost:8081/api' + `/customers/${customerId}`,{headers: authHeader()})
+    }
 }
 
 export default new UserService();
