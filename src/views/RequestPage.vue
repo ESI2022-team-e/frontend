@@ -13,7 +13,7 @@
         <router-link class="btn btn-nav" role="button"
                      :to="{ name: 'requests'}">Back</router-link><div class="divider"/>
         <router-link class="btn btn-nav" role="button"
-                     :to="{ name: 'requests', params: {id: request.id} }">Edit</router-link><div class="divider"/>
+                     :to="{ name: 'editRequest', params: {id: request.id} }">Edit</router-link><div class="divider"/>
         <button class="btn btn-nav" role="button" v-on:click='deleteRequest'>Delete</button>
       </template>
     </div>
@@ -56,7 +56,7 @@ export default {
 
   data() {
     const requestId = this.$route.params.id
-    const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id", "Customer Id"]
+    const headers = ["Id", "Pickup datetime", "Drop-off datetime", "Pickup location", "Drop-off location", "Status", "Car Id", "Customer Id"]
     const request = null
     const notification = ""
     return {requestId, headers, request, notification}
@@ -105,7 +105,7 @@ export default {
       );
     },
     acceptRequest(){
-      RequestService.acceptRequest(this.request.carId, this.requestId).then(
+      RequestService.acceptRequest(this.request.car.id, this.requestId).then(
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
@@ -122,7 +122,7 @@ export default {
       );
     },
     rejectRequest(){
-      RequestService.rejectRequest(this.request.carId, this.requestId).then(
+      RequestService.rejectRequest(this.request.car.id, this.requestId).then(
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
@@ -139,7 +139,7 @@ export default {
       );
     },
     cancelRequest(){
-      RequestService.cancelRequest(this.request.carId, this.requestId).then(
+      RequestService.cancelRequest(this.request.car.id, this.requestId).then(
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
