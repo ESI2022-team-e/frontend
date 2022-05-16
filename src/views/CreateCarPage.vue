@@ -2,7 +2,7 @@
   <div id="createCar">
     <h1>Create a Car</h1>
   </div>
-  <Form @submit="addCar">
+  <Form v-if="isManager" @submit="addCar">
     <div>
       <div class="form-group">
         <label for="mark">Mark:</label>
@@ -176,10 +176,6 @@ export default {
         type: "success",
       });
     },
-  },
-
-  created() {
-    this.addCar();
   },
 };
 </script>
