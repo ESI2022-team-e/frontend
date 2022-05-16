@@ -68,13 +68,13 @@ const routes = [
     },
     {
         path: "/requests/:id",
-        name: "requests",
+        name: "request",
         component: RequestPage,
         params: true,
     },
     {
         path: "/requests/:id/edit",
-        name: "requests",
+        name: "editRequest",
         component: EditRequestPage,
         params: true,
     },
