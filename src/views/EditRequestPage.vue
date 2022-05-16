@@ -99,6 +99,10 @@ export default {
       });
     },
 
+    setMinDateTime() {
+      this.minDatetime = new Date(Date.now())
+    },
+
     updateRequest(){
       const data = JSON.stringify({
         pickupDatetime: this.pickupDatetime,
@@ -107,6 +111,8 @@ export default {
       RequestService.updateRequest(this.request, data).then(
           (response) => {
             this.message = response.data;
+            this.notifySuccess();
+            this.getRequest();
           },
           (error) => {
             this.content =
@@ -120,8 +126,9 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
     this.getRequest()
+    this.setMinDateTime();
   }
 }
 </script>
