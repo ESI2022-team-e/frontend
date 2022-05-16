@@ -3,41 +3,80 @@
     <h1>Rentals</h1>
   </div>
 
-  <TableComponent
-      :items='rentals'
-      :headers='headers'
-      :show-button=true
-      :button-text='buttonText'
-      :page='page'
-  ></TableComponent>
+  <div class="list row">
+    <div class="col-md-6">
+      <h4>Rentals List</h4>
+      <ul class="list-group">
+        <li class="list-group-item"
+          :class="{ active: index == currentIndex }"
+          v-for="(rental, index) in rentals"
+          :key="index"
+          @click="setActiveRental(rental, index)"
+        >
+          Rental {{ index + 1 }}
+        </li>
+      </ul>
+      <br/>
+    </div>
+    <div class="col-md-6">
+      <div v-if="currentRental">
+
+        <!-- Card -->
+            <div class="card">
+              <div class="card-header">
+                <h5>Rental {{currentIndex + 1}}</h5>
+              </div>
+              <div class="card-body">
+                  <h5>Pickup</h5>
+                <p class="card-text"><i class="fa-solid fa-clock"></i> {{ formatDate(currentRental.pickupDatetime) }}</p>
+                <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ currentRental.pickupLocation }}</p>
+                <h5>Drop-off</h5>
+                <p class="card-text"><i class="fa-solid fa-clock"></i> {{ formatDate(currentRental.dropoffDatetime) }}</p>
+                <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ currentRental.dropoffLocation }}</p>
+                <p class="card-text"><i class="fa-solid fa-tick"></i> Status: {{ currentRental.status }}</p>
+                <button :disabled="currentRental.status != 'UPCOMING'" :key='currentRental.status' class="btn btn-primary" v-on:click='startRental'>Start</button>
+                <button :disabled="currentRental.status != 'CURRENT'" :key='currentRental.status' class="btn btn-danger" v-on:click='endRental'>End</button>
+                <router-link :to="{ name: 'rental', params: {id: currentRental.id} }" class="btn btn-warning">Update <i class="fa-solid fa-pencil"></i></router-link>
+              </div>
+            </div>
+        <!-- /Card -->
+      </div>
+      <div v-else>
+        <br />
+
+        <div class="alert alert-info">Please click on a Rental...!</div>
+      </div>
+    </div>
+  </div>
 
 </template>
 
 <script>
 
-import TableComponent from "@/components/TableComponent";
+//import TableComponent from "@/components/TableComponent";
 import RentalService from "@/services/rental.service"
+import moment from 'moment'
 
 export default {
   name: 'RentalList',
-  components: {
-    TableComponent
-  },
+//   components: {
+//     TableComponent
+//   },
 
-  data() {
-    const headers = ["Nr", "Pickup time", "Drop-off time","Pickup location", "Drop-off location", "Status"]
-    const rentals = null
-    const buttonText = "Details"
-    const page = "rental"
-    return {headers, rentals, buttonText, page}
+  data() { return{
+     rentals: [],
+     currentIndex: 0,
+     currentRental: null,
+  }
+   
   },
 
   methods: {
     getAllRentals() {
       RentalService.getAllRentals().then(
-          (response) => {
+          response => {
             this.rentals = response.data;
-            localStorage.setItem('rentals', response.data);
+            console.log(response.data);
           },
           (error) => {
             this.content =
@@ -49,7 +88,57 @@ export default {
           }
       );
     },
+    setActiveRental(rental, index) {
+      this.currentRental = rental;
+      this.currentIndex = rental ? index : -1;
+    },
+
+    formatDate(value) {
+        if (value) {
+            return moment(String(value)).format('MM/DD/YYYY HH:mm')
+        }
+    },
+
+    startRental() {
+      RentalService.startRental(this.currentRental.car.id, this.currentRental.id).then(
+          (response) => {
+            this.notification = response.data;
+            this.notifySuccess()
+            this.getAllRentals()
+          },
+          (error) => {
+            this.content =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+          }
+      );
+    }
   },
+
+  endRental() {
+      console.log("endRental called");
+      RentalService.endRental(this.currentRental.car.id, this.currentRental.id).then(
+          (response) => {
+            this.notification = response.data;
+            this.notifySuccess();
+            this.getAllRentals();
+            console.log("rental ended");
+          },
+          (error) => {
+            this.content =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+          }
+      );
+    },
+
+  
 
   created() {
     this.getAllRentals()
