@@ -14,11 +14,11 @@
             <div>
               <div class="form-group">
                 <label for="licence_plate">Set new licence plate</label>
-                <input type="text" v-model="licence_pl" name="licence_plate" class="form-control" placeholder="Set a new daily cost" />
+                <input type="text" v-model="formData.licence_plate" name="licence_plate" class="form-control" placeholder="Set a new daily cost" />
               </div>
               <div class="form-group">
                 <label for="daily_cost">Set new daily cost</label>
-                <input type="number" v-model="daily_c" name="daily_cost" class="form-control" placeholder="Set a new daily cost" min="0"/>
+                <input type="number" v-model="formData.daily_cost" name="daily_cost" class="form-control" placeholder="Set a new daily cost" min="0"/>
               </div>
             </div>
             <input type="submit" v-if="isManager" class="btn btn-nav" value="Save changes"/>
@@ -58,9 +58,16 @@ export default {
     const headers = {id: "Nr", daily_cost: "Daily cost", fuel_type: "Fuel type", licence_plate: "Licence plate", mark: "Mark", model: "Model", nr_of_seats: "No of seats", transmission_type: "Automatic", year: "Year" }
     const car = null
     const notification = ""
-    const licence_pl = null
-    const daily_c = null
-    return {carId, headers, car, notification, licence_pl, daily_c, message:""}
+    return {
+      carId, 
+      headers, 
+      car, 
+      notification, 
+      formData:{
+        licence_plate: '', 
+        daily_cost: null,
+      }
+    }
   },
 
   methods: { 
@@ -89,13 +96,10 @@ export default {
     },
 
     updateCar(){
-      const data = JSON.stringify({
-        licence_plate: this.licence_pl,
-        daily_cost: this.daily_c
-      });
-      CarService.updateCar(this.carId, data).then(
+      CarService.updateCar(this.carId, this.formData).then(
         (response) => {
-          this.message = response.data;
+          this.notification = response.data;
+          this.getCar();
         },
         (error) => {
           this.content =
