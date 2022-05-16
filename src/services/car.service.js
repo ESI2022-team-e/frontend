@@ -23,8 +23,16 @@ class CarService {
         return axios.delete(API_BASE_URL + '/cars/' + carId, {headers: authHeader()})
     }
 
-    updateCar(carId, car) {
-        return axios.put(API_BASE_URL + '/cars/' + carId, {headers: authHeader(), data: {car}})
+    updateCar(carId, updatedValues) {
+        return axios({
+            method: 'put',
+            url: API_BASE_URL + '/cars/' + carId,
+            headers: authHeader(),
+            data: {
+                'licence_plate': updatedValues.licence_plate,
+                'daily_cost': updatedValues.daily_cost
+            }
+        })
     }
 }
 
