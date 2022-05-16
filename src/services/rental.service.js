@@ -33,8 +33,7 @@ class RentalService {
     }
 
     endRental(carId, rentalId) {
-         return http.put(`/cars/${carId}/rentals/${rentalId}`,
-        {data:{status: 'DONE'}})
+         return http.put(`/cars/${carId}/rentals/${rentalId}`,{status: 'DONE'})
     }
 
     updateRental(carId, rentalId,rental) {

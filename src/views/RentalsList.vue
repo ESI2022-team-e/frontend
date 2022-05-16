@@ -34,9 +34,9 @@
                 <p class="card-text"><i class="fa-solid fa-clock"></i> {{ formatDate(currentRental.dropoffDatetime) }}</p>
                 <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ currentRental.dropoffLocation }}</p>
                 <p class="card-text"><i class="fa-solid fa-tick"></i> Status: {{ currentRental.status }}</p>
-                <button :disabled="currentRental.status != 'UPCOMING'" :key='currentRental.status' class="btn btn-primary" v-on:click='startRental'>Start</button>
-                <button :disabled="currentRental.status != 'CURRENT'" :key='currentRental.status' class="btn btn-danger" v-on:click='endRental'>End</button>
-                <router-link :to="{ name: 'rental', params: {id: currentRental.id} }" class="btn btn-warning">Update <i class="fa-solid fa-pencil"></i></router-link>
+                <button :disabled="currentRental.status != 'UPCOMING'" :key='currentRental.status' class="btn btn-primary" v-on:click="startRental">Start</button>
+                <button :disabled="currentRental.status != 'CURRENT'" :key='currentRental.status' class="btn btn-danger" v-on:click="endRental">End</button>
+                <!-- <router-link :to="{ name: 'rental', params: {id: currentRental.id} }" class="btn btn-warning">Update <i class="fa-solid fa-pencil"></i></router-link> -->
               </div>
             </div>
         <!-- /Card -->
@@ -55,6 +55,7 @@
 
 //import TableComponent from "@/components/TableComponent";
 import RentalService from "@/services/rental.service"
+import {notify} from "@kyvg/vue3-notification";
 import moment from 'moment'
 
 export default {
@@ -67,6 +68,7 @@ export default {
      rentals: [],
      currentIndex: 0,
      currentRental: null,
+     notification: ""
   }
    
   },
@@ -99,6 +101,13 @@ export default {
         }
     },
 
+    notifySuccess() {
+      notify({
+        text: this.notification,
+        type: 'success',
+      });
+    },
+
     startRental() {
       RentalService.startRental(this.currentRental.car.id, this.currentRental.id).then(
           (response) => {
@@ -115,17 +124,14 @@ export default {
                 error.toString();
           }
       );
-    }
-  },
-
-  endRental() {
-      console.log("endRental called");
+    },
+    endRental() {
       RentalService.endRental(this.currentRental.car.id, this.currentRental.id).then(
           (response) => {
             this.notification = response.data;
             this.notifySuccess();
+            window.location.reload();
             this.getAllRentals();
-            console.log("rental ended");
           },
           (error) => {
             this.content =
@@ -137,7 +143,7 @@ export default {
           }
       );
     },
-
+  },
   
 
   created() {
