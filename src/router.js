@@ -12,6 +12,7 @@ import RentalsList from "./views/RentalsList.vue";
 // import RentalPage from "./views/RentalPage.vue";
 import CarRentalsList from "./views/CarRentalsList.vue";
 import RequestPage from "@/views/RequestPage.vue";
+import CreateCarPage from "./views/CreateCarPage.vue";
 
 
 // lazy-loaded
@@ -105,6 +106,7 @@ const routes = [
         params: true,
     },
     {
+
         path: "/rentals",
         name: "rentals",
         // lazy-loaded
@@ -123,6 +125,37 @@ const routes = [
         // lazy-loaded
         component: CarRentalsList,
         params: true
+
+    },
+    {
+        path: "/car/:id",
+        name: "car",
+        component: CarPage,
+        params: true,
+    },
+    {
+        path: "/car/:id/edit",
+        name: "editCar",
+        component: EditCarPage,
+        params: true,
+    },
+    {
+        path: "/rentals",
+        name: "rentals",
+        // lazy-loaded
+        component: RentalsList,
+    },
+    {
+        path: "/rental/:id",
+        name: "rental",
+        // lazy-loaded
+        component: RentalPage,
+        params: true
+    },
+    {
+        path: "/cars/create",
+        name: "createCar",
+        component: CreateCarPage,
     }
 ];
 const router = createRouter({

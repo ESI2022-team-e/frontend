@@ -5,12 +5,12 @@
       <h4>Create rental request</h4>
     </div>
 
-    <div
+<!--<div
         v-if="message"
         class="alert"
         :class="successful ? 'alert-success' : 'alert-danger'"
     >{{ message }}
-    </div>
+    </div>-->
 
     <div>
       <Form @submit="postRequest">
@@ -60,20 +60,16 @@
 </template>
 
 <script>
-
 import {ErrorMessage, Field, Form} from "vee-validate";
 import {notify} from "@kyvg/vue3-notification";
 import RequestService from "@/services/request.service";
-
 export default {
   name: 'SendRequestContainer',
-
   components: {
     Form,
     Field,
     ErrorMessage,
   },
-
   props: {
     pickupDatetime: {},
     dropoffDatetime: {},
@@ -81,7 +77,6 @@ export default {
     carMarkModel: {},
     carId: {},
   },
-
   data() {
     return {
       message: "Request sent successfully!",
@@ -89,9 +84,7 @@ export default {
       successful: false
     }
   },
-
   methods: {
-
     postRequest() {
       RequestService.createRequest(this.carId, this.pickupDatetime, this.dropoffDatetime, this.pickupLocation, this.dropoffLocation).then(
           (response) => {
@@ -111,16 +104,12 @@ export default {
           }
       );
     },
-
     notifySuccess() {
       notify({
         text: this.message,
         type: 'success',
       });
     },
-
   },
-
 }
-
 </script>

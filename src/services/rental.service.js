@@ -20,6 +20,7 @@ class RentalService {
         return http.get(
             `/cars/${carId}/rentals`)
     }
+
     getRentalsByCustomer(customerId){
         return http.get(`/customers/${customerId}/rentals`)
     }
@@ -41,6 +42,7 @@ class RentalService {
 
     endRental(carId, rentalId) {
          return http.put(`/cars/${carId}/rentals/${rentalId}`,{status: 'DONE'})
+
     }
 
     updateRental(carId, rentalId,rental) {
