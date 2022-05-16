@@ -112,8 +112,9 @@ const routes = [
         name: "carrentals",
         // lazy-loaded
         component: CarRentalsList,
-        params: true
-
+        params: true,
+    },
+    {
         path: "/car/:id",
         name: "car",
         component: CarPage,
