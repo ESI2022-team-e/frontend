@@ -56,7 +56,7 @@ export default {
 
   data() {
     const requestId = this.$route.params.id
-    const headers = ["Id", "Pickup datetime", "Drop-off datetime", "Pickup location", "Drop-off location", "Status", "Car Id", "Customer Id"]
+    const headers = ["Id", "Pickup datetime", "Drop-off datetime", "Pickup location", "Drop-off location", "Status"]
     const request = null
     const notification = ""
     return {requestId, headers, request, notification}
@@ -64,7 +64,7 @@ export default {
 
   methods: {
     getRequest(){
-      RequestService.getRequest(this.requestId).then(
+      RequestService.getRequest(this.requestId, this.request.car.id).then(
           (response) => {
             console.log(response);
             this.request = response.data;
@@ -88,7 +88,7 @@ export default {
     },
 
     deleteRequest() {
-      RequestService.deleteRequest(this.request.carId, this.requestId).then(
+      RequestService.deleteRequest(this.request.car.id, this.requestId).then(
           (response)=>{
             this.notification = response.data;
             this.notifySuccess()
