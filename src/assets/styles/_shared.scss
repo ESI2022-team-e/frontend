@@ -19,6 +19,8 @@ that contains all the variables.
   }
 
   &.btn-danger {
+    background-color: $dangerBtn;
+    border-color: $dangerBorder;
   }
 
   &.btn-nav {
