@@ -88,7 +88,7 @@ const routes = [
         params: true,
     },
     {
-        path: "/car/create",
+        path: "/cars/create",
         name: "createCar",
         component: CreateCarPage,
         params: true,
