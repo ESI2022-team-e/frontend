@@ -91,7 +91,6 @@ const routes = [
         path: "/cars/create",
         name: "createCar",
         component: CreateCarPage,
-        params: true,
     }
 ];
 const router = createRouter({

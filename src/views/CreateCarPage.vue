@@ -90,7 +90,6 @@
       v-if="isManager"
       class="btn btn-nav"
       value="Save changes"
-      required
     />
   </Form>
   <div class="container-with-padding">
@@ -102,14 +101,14 @@
 </template>
 <script>
 
-import {Form} from "vee-validate";
+import { Form } from "vee-validate";
 import CarService from "@/services/car.service";
 import { notify } from "@kyvg/vue3-notification";
 
 export default {
   name: "CreateCarPage",
   components: {
-    Form
+    Form,
   },
   computed: {
     isManager() {
@@ -143,9 +142,17 @@ export default {
 
   methods: {
     addCar() {
-      if (this.formData.mark===null || this.formData.model===null || this.formData.nr_of_seats===null || this.formData.transmission_type===null || this.formData.fuel_type===null
-      || this.formData.daily_cost===null || this.formData.year===null || this.formData.licence_plate===null){
-        this.content === "Values cannot be null"
+      if (
+        this.formData.mark === null ||
+        this.formData.model === null ||
+        this.formData.nr_of_seats === null ||
+        this.formData.transmission_type === null ||
+        this.formData.fuel_type === null ||
+        this.formData.daily_cost === null ||
+        this.formData.year === null ||
+        this.formData.licence_plate === null
+      ) {
+        this.content === "Values cannot be null";
       }
       CarService.addCar(this.formData).then(
         (response) => {
