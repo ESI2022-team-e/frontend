@@ -10,23 +10,22 @@
     ></VerticalTableComponent>
     </div>
     <br>
-    <form @submit="updateCar">
+    <Form @submit="updateCar">
             <div>
               <div class="form-group">
                 <label for="licence_plate">Set new licence plate</label>
-                <input type="text" v-model="licence_plate" name="licence_plate" placeholder="Set a new daily cost" />
+                <input type="text" v-model="licence_pl" name="licence_plate" class="form-control" placeholder="Set a new daily cost" />
               </div>
               <div class="form-group">
                 <label for="daily_cost">Set new daily cost</label>
-                <input type="number" v-model="daily_cost" name="daily_cost" placeholder="Set a new daily cost" min="0"/>
+                <input type="number" v-model="daily_c" name="daily_cost" class="form-control" placeholder="Set a new daily cost" min="0"/>
               </div>
             </div>
             <input type="submit" v-if="isManager" class="btn btn-nav" value="Save changes"/>
-    </form>
+    </Form>
     <div class='container-with-padding'>
     <router-link class="btn btn-nav" role="button"
                        :to="{ name: 'cars'}">Back</router-link><div class="divider"/>
-   
     </div>
 </template>
 
@@ -35,11 +34,13 @@
 import CarService from "@/services/car.service";
 import VerticalTableComponent from "@/components/VerticalTableComponent";
 import {notify} from "@kyvg/vue3-notification";
+import {Form} from "vee-validate";
 
 export default {
   name: 'EditCarPage',
   components: {
     VerticalTableComponent,
+    Form,
   },
   computed: {
       isManager () {
@@ -57,9 +58,9 @@ export default {
     const headers = {id: "Nr", daily_cost: "Daily cost", fuel_type: "Fuel type", licence_plate: "Licence plate", mark: "Mark", model: "Model", nr_of_seats: "No of seats", transmission_type: "Automatic", year: "Year" }
     const car = null
     const notification = ""
-    const licence_plate = null
-    const daily_cost = null
-    return {carId, headers, car, notification, licence_plate, daily_cost, message:""}
+    const licence_pl = null
+    const daily_c = null
+    return {carId, headers, car, notification, licence_pl, daily_c, message:""}
   },
 
   methods: { 
@@ -89,8 +90,8 @@ export default {
 
     updateCar(){
       const data = JSON.stringify({
-        licence_plate: this.licence_plate,
-        daily_cost: this.daily_cost
+        licence_plate: this.licence_pl,
+        daily_cost: this.daily_c
       });
       CarService.updateCar(this.carId, data).then(
         (response) => {
