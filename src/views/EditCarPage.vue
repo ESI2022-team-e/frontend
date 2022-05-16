@@ -10,22 +10,23 @@
     ></VerticalTableComponent>
     </div>
     <br>
-    <v-form @submit="updateCar">
+    <form @submit="updateCar">
             <div>
               <div class="form-group">
                 <label for="licence_plate">Set new licence plate</label>
-                <v-field name="licence_plate" type="text" class="form-control"/>
+                <input type="text" v-model="licence_plate" name="licence_plate" placeholder="Set a new daily cost" />
               </div>
               <div class="form-group">
                 <label for="daily_cost">Set new daily cost</label>
-                <v-field name="daily_cost" type="number" class="form-control"/>
+                <input type="number" v-model="daily_cost" name="daily_cost" placeholder="Set a new daily cost" min="0"/>
               </div>
             </div>
-    </v-form>
+            <input type="submit" v-if="isManager" class="btn btn-nav" value="Save changes"/>
+    </form>
     <div class='container-with-padding'>
     <router-link class="btn btn-nav" role="button"
                        :to="{ name: 'cars'}">Back</router-link><div class="divider"/>
-    <button v-if="isManager" class="btn btn-nav" role="button" v-on:click='updateCar'>Save changes</button>
+   
     </div>
 </template>
 
@@ -34,7 +35,6 @@
 import CarService from "@/services/car.service";
 import VerticalTableComponent from "@/components/VerticalTableComponent";
 import {notify} from "@kyvg/vue3-notification";
-import * as yup from "yup";
 
 export default {
   name: 'EditCarPage',
@@ -57,11 +57,9 @@ export default {
     const headers = {id: "Nr", daily_cost: "Daily cost", fuel_type: "Fuel type", licence_plate: "Licence plate", mark: "Mark", model: "Model", nr_of_seats: "No of seats", transmission_type: "Automatic", year: "Year" }
     const car = null
     const notification = ""
-    const schema = yup.object().shape({
-      licence_plate: yup.string(),
-      daily_cost: yup.number(),
-    });
-    return {carId, headers, car, notification, schema, message:""}
+    const licence_plate = null
+    const daily_cost = null
+    return {carId, headers, car, notification, licence_plate, daily_cost, message:""}
   },
 
   methods: { 
@@ -89,8 +87,12 @@ export default {
       });
     },
 
-    updateCar(values){
-        CarService.updateCar(this.carId, JSON.stringify(values, null, 2)).then(
+    updateCar(){
+      const data = JSON.stringify({
+        licence_plate: this.licence_plate,
+        daily_cost: this.daily_cost
+      });
+      CarService.updateCar(this.carId, data).then(
         (response) => {
           this.message = response.data;
         },
