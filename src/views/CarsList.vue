@@ -4,6 +4,7 @@
       <h1>Car Catalogue </h1>
 
       <Form @submit="getAllCars">
+        <h4>Select a time range to request a rental:</h4>
         <div class="date-search">
           <div>
             <label for="pickupDatetime">Pickup date & time</label>
@@ -35,9 +36,14 @@
             Fuel type: {{ car.fuel_type }} <br>
             Daily cost: {{ car.daily_cost }} <br>
             Year: {{ car.year }} </p>
-          <router-link class="select-button" role="button"
-                       :to="{ name: 'car', params: {id: car.id} }">DETAILS
-          </router-link>
+          <div>
+            <router-link class="select-button" role="button"
+                         :to="{ name: 'car', params: {id: car.id} }">DETAILS
+            </router-link>
+            <router-link class="select-button" :class="{ 'disabled' : requestDisabled}" role="button"
+                         :to="{ name: 'car', params: {id: car.id} }">REQUEST
+            </router-link>
+          </div>
         </div>
       </div>
     </section>
@@ -61,13 +67,16 @@ export default {
 
   data() {
     const cars = null
-    const requestEnabled = true
-    return {cars, requestEnabled}
+    const requestDisabled = false
+    return {cars, requestDisabled}
   },
 
   methods: {
     getAllCars(dates) {
-      console.log(dates)
+      this.requestDisabled = true
+      if (dates !== undefined)
+        if (dates.pickupDatetime !== undefined && dates.dropoffDatetime !== undefined)
+          this.requestDisabled = false
       CarService.getAllCars(dates).then(
           (response) => {
             this.cars = response.data;
@@ -82,6 +91,10 @@ export default {
           }
       );
     }
+  },
+
+  enableRequest() {
+    return this.requestDisabled ? "" : "{ name: 'car', params: {id: car.id} }"
   },
 
   created() {

@@ -9,11 +9,9 @@ class CarService {
         let add = ""
         // ?startTime=2022-05-08T20:25:59&endTime=2022-05-15T20:25:59
         if (dates !== undefined)
-            if (dates.pickupDatetime !== undefined || dates.dropoffDatetime !== undefined)
+            if (dates.pickupDatetime !== undefined && dates.dropoffDatetime !== undefined)
                 add = "?startTime=" + dates.pickupDatetime + "&endTime=" + dates.dropoffDatetime
-        return axios.get(API_BASE_URL + '/cars' + add, {
-            data: dates
-        })
+        return axios.get(API_BASE_URL + '/cars' + add)
     }
 
     getCar(carId) {
