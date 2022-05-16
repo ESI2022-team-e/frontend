@@ -21,7 +21,7 @@ class RequestService {
         return axios.get(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {headers: authHeader()})
     }
 
-    getRequest(requestId) {
+    getRequestById(requestId) {
         return axios.get(API_BASE_URL + '/requests/' + requestId, {headers: authHeader()})
     }
 

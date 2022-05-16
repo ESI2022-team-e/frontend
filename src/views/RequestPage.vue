@@ -65,7 +65,7 @@ export default {
 
   methods: {
     getRequest(){
-      RequestService.getRequest(this.requestId).then(
+      RequestService.getRequestById(this.requestId).then(
           (response) => {
             console.log(response);
             this.request = response.data;
