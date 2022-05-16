@@ -12,6 +12,74 @@ class RequestService {
         else
             return axios.get(API_BASE_URL + '/requests', {headers: authHeader()});
     }
+
+    getAllRequestsByCarId(carId) {
+        return axios.get(API_BASE_URL + '/cars/' + carId + '/requests', {headers: authHeader()})
+    }
+
+    getRequest(carId, requestId) {
+        return axios.get(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {headers: authHeader()})
+    }
+
+    deleteRequest(carId, requestId) {
+        return axios.delete(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {headers: authHeader()})
+    }
+
+    updateRequest(request, requestId, carId) {
+        return axios.put(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {headers: authHeader(), data: {request}})
+    }
+
+    createRental(carId, rentalId) {
+        return axios({
+            method: 'put',
+            url: API_BASE_URL +
+                '/cars/' + carId +
+                '/rentals/' + rentalId,
+            headers: authHeader(),
+            data: {
+                status: 'UPCOMING'
+            }
+        })
+    }
+
+    acceptRequest(carId, requestId) {
+        return axios({
+            method: 'put',
+            url: API_BASE_URL +
+                '/cars/' + carId +
+                '/requests/' + requestId,
+            headers: authHeader(),
+            data: {
+                status: 'ACCEPTED'
+            }
+        })
+    }
+
+    rejectRequest(carId, requestId) {
+        return axios({
+            method: 'put',
+            url: API_BASE_URL +
+                '/cars/' + carId +
+                '/requests/' + requestId,
+            headers: authHeader(),
+            data: {
+                status: 'REJECTED'
+            }
+        })
+    }
+
+    cancelRequest(carId, requestId) {
+        return axios({
+            method: 'put',
+            url: API_BASE_URL +
+                '/cars/' + carId +
+                '/requests/' + requestId,
+            headers: authHeader(),
+            data: {
+                status: 'CANCELLED'
+            }
+        })
+    }
 }
 
 export default new RequestService();

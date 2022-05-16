@@ -5,6 +5,8 @@ import UserRegister from "./views/UserRegister.vue";
 import CarPage from "@/views/CarPage";
 import EditCarPage from "@/views/EditCarPage";
 import RequestList from "@/views/RequestList.vue";
+import RequestPage from "@/views/RequestPage.vue";
+import EditRequestPage from "@/views/EditRequestPage";
 import InvoicesList from "./views/InvoicesList.vue";
 import InvoicePage from "./views/InvoicePage.vue";
 
@@ -60,6 +62,18 @@ const routes = [
         path: "/requests",
         name: "requests",
         component: RequestList,
+    },
+    {
+        path: "/requests/:id",
+        name: "requests",
+        component: RequestPage,
+        params: true,
+    },
+    {
+        path: "/requests/:id/edit",
+        name: "requests",
+        component: EditRequestPage,
+        params: true,
     },
     {
         path: "/invoices",
