@@ -65,7 +65,7 @@ export default {
 
   methods: {
     getRequest(){
-      RequestService.getRequest(this.requestId).then(
+      RequestService.getRequestById(this.requestId).then(
           (response) => {
             console.log(response.data);
             this.request = response.data;
@@ -111,7 +111,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
@@ -128,7 +128,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
@@ -145,7 +145,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
