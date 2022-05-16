@@ -10,23 +10,23 @@
     ></VerticalTableComponent>
   </div>
   <br>
-  <p>Set a new pickup time:</p>
-  <input placeholder="" />
-  <br>
-  <br>
-  <p>Set a new dropoff time:</p>
-  <input placeholder="" />
-  <br>
-  <br>
-  <p>Set a new dropoff location:</p>
-  <input placeholder="" />
-  <br>
-  <br>
-  <template v-if="isManager">
-    <p>Update status:</p>
-    <input placeholder="" />
-  </template>
-  <br>
+  <v-form @submit="updateRequest">
+    <div>
+      <div class="form-group">
+        <label for="pickupDatetime">New pickup time:</label>
+        <v-field name="pickupDatetime" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="dropoffDatetime">New dropoff time:</label>
+        <v-field name="dropoffDatetime" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="dropoffLocation">New dropoff location:</label>
+        <v-field name="dropoffLocation" type="text" class="form-control"/>
+      </div>
+    </div>
+  </v-form>
+
   <div class='container-with-padding'>
     <router-link class="btn btn-nav" role="button"
                  :to="{ name: 'requests'}">Back</router-link><div class="divider"/>
@@ -39,6 +39,7 @@
 import RequestService from "@/services/request.service";
 import VerticalTableComponent from "@/components/VerticalTableComponent";
 import {notify} from "@kyvg/vue3-notification";
+import * as yup from "yup";
 
 export default {
   name: 'EditRequestPage',
@@ -64,7 +65,13 @@ export default {
     const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id", "Customer Id"]
     const request = null
     const notification = ""
-    return {requestId, headers, request, notification}
+    const schema = yup.object().shape({
+      pickupDatetime: yup.date(),
+      dropoffDatetime: yup.date(),
+      dropoffLocation: yup.string(),
+    })
+    const message = ""
+    return {requestId, headers, request, notification, schema, message}
   },
 
   methods: {
@@ -92,10 +99,10 @@ export default {
       });
     },
 
-    updateRequest(){
-      RequestService.updateRequest(this.request).then(
+    updateRequest(values){
+      RequestService.updateRequest(this.request, JSON.stringify(values, null, 3)).then(
           (response) => {
-            this.request = response.data;
+            this.message = response.data;
           },
           (error) => {
             this.content =
