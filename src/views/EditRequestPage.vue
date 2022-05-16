@@ -14,11 +14,11 @@
     <div>
       <div class="form-group">
         <label for="pickupDatetime">New pickup time:</label>
-        <input v-model="pickupDatetime" name="pickupDatetime" type="datetime"/>
+        <input v-model="pickupDatetime" name="pickupDatetime" type="datetime-local"/>
       </div>
       <div class="form-group">
         <label for="dropoffDatetime">New dropoff time:</label>
-        <input v-model="dropoffDatetime" name="dropoffDatetime" type="datetime"/>
+        <input v-model="dropoffDatetime" name="dropoffDatetime" type="datetime-local"/>
       </div>
       <div class="form-group">
         <label for="dropoffLocation">New dropoff location:</label>
