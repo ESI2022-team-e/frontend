@@ -3,7 +3,8 @@
     <table>
       <tr v-for='(data, index) in item' :key='data'>
         <th>{{ headers[index] }}</th>
-        <td>{{ data }}</td>
+        <td v-if="data.id">{{ data.id }}</td>
+        <td v-else>{{ data }}</td>
       </tr>
     </table>
   </div>

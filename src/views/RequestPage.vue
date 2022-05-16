@@ -1,6 +1,6 @@
 <template>
   <div id="request">
-    <h1>Request</h1>
+    <h1>Request </h1>
   </div>
   <div>
     <VerticalTableComponent
@@ -54,19 +54,20 @@ export default {
     }
   },
 
-  data() {
-    const requestId = this.$route.params.id
-    const headers = ["Id", "Pickup datetime", "Drop-off datetime", "Pickup location", "Drop-off location", "Status", "Car Id", "Customer Id"]
-    const request = null
-    const notification = ""
-    return {requestId, headers, request, notification}
+  data() { return {
+    requestId: this.$route.params.id,
+    headers: ["Id", "Pickup datetime", "Drop-off datetime", "Pickup location", "Drop-off location", "Status"],
+    request: null,
+    message: "",
+    minDatetime: null,
+    }
   },
 
   methods: {
     getRequest(){
-      RequestService.getRequest(this.requestId).then(
+      RequestService.getRequestById(this.requestId).then(
           (response) => {
-            console.log(response);
+            console.log(response.data);
             this.request = response.data;
           },
           (error) => {
@@ -88,7 +89,7 @@ export default {
     },
 
     deleteRequest() {
-      RequestService.deleteRequest(this.request.carId, this.requestId).then(
+      RequestService.deleteRequest(this.request.car.id, this.requestId).then(
           (response)=>{
             this.notification = response.data;
             this.notifySuccess()
@@ -105,11 +106,12 @@ export default {
       );
     },
     acceptRequest(){
+      console.log(this.request.car.id);
       RequestService.acceptRequest(this.request.car.id, this.requestId).then(
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
@@ -126,7 +128,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
@@ -143,7 +145,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
