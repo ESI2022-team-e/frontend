@@ -33,6 +33,23 @@ class CarService {
             }
         })
     }
+    addCar(values) {
+        return axios({
+            method: 'post',
+            url: API_BASE_URL + '/cars' ,
+            headers: authHeader(), 
+            data: { 
+                "mark": values.mark,
+                "model": values.model,
+                "nr_of_seats": values.nr_of_seats,
+                "transmission_type": values.transmission_type,
+                "fuel_type": values.fuel_type,
+                "daily_cost": values.daily_cost,
+                "year" : values.year,
+                "licence_plate": values.licence_plate,             
+            }
+        }) 
+    }
 }
 
 export default new CarService();

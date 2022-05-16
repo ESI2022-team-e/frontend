@@ -33,6 +33,9 @@
         <li v-if="showManagerBoard" class="nav-item">
           <router-link to="/manager" class="nav-link">Manager Page</router-link>
         </li>
+        <li v-if="showManagerBoard" class="nav-item">
+          <router-link to="/cars/create" class="nav-link">Create a car</router-link>
+        </li>
         <li class="nav-item">
           <router-link v-if="currentUser" to="/user" class="nav-link">User Page</router-link>
         </li>

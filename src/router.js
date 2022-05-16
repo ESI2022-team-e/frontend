@@ -11,7 +11,7 @@ import InvoicePage from "./views/InvoicePage.vue";
 import RentalsList from "./views/RentalsList.vue";
 import RentalPage from "./views/RentalPage.vue";
 import RequestPage from "@/views/RequestPage.vue";
-
+import CreateCarPage from "./views/CreateCarPage.vue";
 
 // lazy-loaded
 const UserProfile = () => import("./views/UserProfile.vue")
@@ -115,6 +115,11 @@ const routes = [
         // lazy-loaded
         component: RentalPage,
         params: true
+
+        path: "/cars/create",
+        name: "createCar",
+        component: CreateCarPage,
+
     }
 ];
 const router = createRouter({

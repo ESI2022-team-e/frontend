@@ -26,10 +26,13 @@
         </div>
       </Form>
 
+
       <div class="car-profile" v-for="car in cars" :key="car.id">
-        <img alt="car_img" src="../assets/img/car-img.png">
-        <h2> {{ car.mark }} <br>
-          {{ car.model }}</h2>
+        <img alt="car_img" src="../assets/img/car-img.png" />
+        <h2>
+          {{ car.mark }} <br />
+          {{ car.model }}
+        </h2>
         <div class="text">
           <p>Number of seats: {{ car.nr_of_seats }} <br>
             Transmission type: {{ car.transmission_type }} <br>
@@ -59,14 +62,13 @@
 </template>
 
 <script>
-
 import CarService from "@/services/car.service";
 import {ErrorMessage, Field, Form} from "vee-validate";
 import SendRequestContainer from "@/views/AddRequest";
 
 
 export default {
-  name: 'CarsList',
+  name: "CarsList",
 
   components: {
     SendRequestContainer,
@@ -108,10 +110,11 @@ export default {
     showRequestForm() {
       this.reqestForm = true;
     }
+
   },
 
   created() {
-    this.getAllCars()
-  }
-}
+    this.getAllCars();
+  },
+};
 </script>
