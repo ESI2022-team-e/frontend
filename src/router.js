@@ -5,12 +5,13 @@ import UserRegister from "./views/UserRegister.vue";
 import CarPage from "@/views/CarPage";
 import EditCarPage from "@/views/EditCarPage";
 import RequestList from "@/views/RequestList.vue";
+import EditRequestPage from "@/views/EditRequestPage";
 import InvoicesList from "./views/InvoicesList.vue";
 import InvoicePage from "./views/InvoicePage.vue";
 import RentalsList from "./views/RentalsList.vue";
 // import RentalPage from "./views/RentalPage.vue";
 import CarRentalsList from "./views/CarRentalsList.vue";
-
+import RequestPage from "@/views/RequestPage.vue";
 import CreateCarPage from "./views/CreateCarPage.vue";
 
 
@@ -68,6 +69,18 @@ const routes = [
         component: RequestList,
     },
     {
+        path: "/requests/:id",
+        name: "request",
+        component: RequestPage,
+        params: true,
+    },
+    {
+        path: "/requests/:id/edit",
+        name: "editRequest",
+        component: EditRequestPage,
+        params: true,
+    },
+    {
         path: "/invoices",
         name: "invoices",
         // lazy-loaded
@@ -111,6 +124,19 @@ const routes = [
         name: "editCar",
         component: EditCarPage,
         params: true,
+    },
+    {
+        path: "/rentals",
+        name: "rentals",
+        // lazy-loaded
+        component: RentalsList,
+    },
+    {
+        path: "/rental/:id",
+        name: "rental",
+        // lazy-loaded
+        component: RentalPage,
+        params: true
     },
     {
         path: "/cars/create",
