@@ -58,3 +58,24 @@
   height:auto;
   display:inline-block;
 }
+
+.date-search {
+  display: flex;
+  padding: 10px;
+
+  div {
+    padding: 10px;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 12px;
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
