@@ -68,7 +68,6 @@ export default {
 
   data() { return{
     rentalId: this.$route.params.id,
-    headers: {id: "Nr", pickupDatetime: "Pickup time", pickupLocation: "Pickup location", dropoffDatetime: "Drop-off time", dropoffLocation: "Drop-off location", car_id: "Car ID", status: "Status"},
     rental: null,
     message: "",
     minDatetime: null,

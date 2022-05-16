@@ -1,5 +1,5 @@
 <template>
-  <div id="rentals">
+  <div id="carrentals">
     <h1>Rentals</h1>
   </div>
 
@@ -35,7 +35,8 @@
                 <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ currentRental.dropoffLocation }}</p>
                 <p class="card-text"><i class="fa-solid fa-tick"></i> Status: {{ currentRental.status }}</p>
                 <button :disabled="currentRental.status != 'UPCOMING'" :key='currentRental.status' class="btn btn-primary" v-on:click="startRental">Start</button>
-                <button :disabled="currentRental.status != 'CURRENT'" :key='currentRental.status' class="btn btn-danger" v-on:click="endRental">End</button>
+                <button :disabled="currentRental.status != 'CURRENT'" :key='currentRental.status' class="btn btn-primary" v-on:click="endRental">End</button>
+                <button class="btn btn-danger" v-on:click="deleteRental">Delete</button>
                 <!-- <router-link :to="{ name: 'rental', params: {id: currentRental.id} }" class="btn btn-warning">Update <i class="fa-solid fa-pencil"></i></router-link> -->
               </div>
             </div>
@@ -74,8 +75,8 @@ export default {
   },
 
   methods: {
-    getAllRentals() {
-      RentalService.getAllRentals().then(
+    getRentalsByCar() {
+      RentalService.getRentalsByCar(this.$route.params.car_id).then(
           response => {
             this.rentals = response.data;
             console.log(response.data);
@@ -113,7 +114,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getAllRentals()
+            window.location.reload();
           },
           (error) => {
             this.content =
@@ -131,7 +132,6 @@ export default {
             this.notification = response.data;
             this.notifySuccess();
             window.location.reload();
-            this.getAllRentals();
           },
           (error) => {
             this.content =
@@ -143,11 +143,28 @@ export default {
           }
       );
     },
+    deleteRental(){
+        RentalService.deleteRental(this.currentRental.car.id, this.currentRental.id).then(
+          (response) => {
+            this.notification = response.data;
+            this.notifySuccess();
+            window.location.reload();
+          },
+          (error) => {
+            this.content =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+          }
+      );
+    }
   },
   
 
   created() {
-    this.getAllRentals()
+    this.getRentalsByCar()
   }
 }
 

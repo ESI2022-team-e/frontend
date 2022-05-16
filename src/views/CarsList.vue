@@ -68,18 +68,14 @@
 import CarService from "@/services/car.service";
 import {ErrorMessage, Field, Form} from "vee-validate";
 import SendRequestContainer from "@/views/AddRequest";
-
-
 export default {
   name: "CarsList",
-
   components: {
     SendRequestContainer,
     Form,
     Field,
     ErrorMessage,
   },
-
   data() {
     const cars = null
     const requestDisabled = false
@@ -87,7 +83,6 @@ export default {
     const dates = {}
     return {cars, requestDisabled, requestForm, dates}
   },
-
   methods: {
     getAllCars(dates) {
       this.requestDisabled = true
@@ -109,14 +104,11 @@ export default {
           }
       );
     },
-
     showRequestForm() {
       console.log("Create request")
       this.requestForm = true;
     }
-
   },
-
   created() {
     this.getAllCars();
   },

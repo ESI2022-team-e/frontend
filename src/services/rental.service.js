@@ -21,20 +21,28 @@ class RentalService {
             `/cars/${carId}/rentals`)
     }
 
+    getRentalsByCustomer(customerId){
+        return http.get(`/customers/${customerId}/rentals`)
+    }
+
     getRental(rentalId) {
         let user = JSON.parse(localStorage.getItem('user'));
         let rental = http.get(`/customers/${user.id}/rentals/${rentalId}`);
         return rental
     }
 
+    getRentalbyCar(carId,rentalId) {
+        let rental = http.get(`/cars/${carId}/rentals/${rentalId}`);
+        return rental
+    }
+
     startRental(carId, rentalId) {
-        return http.put(`/cars/${carId}/rentals/${rentalId}`,
-        {data:{status: 'CURRENT'}})
+        return http.put(`/cars/${carId}/rentals/${rentalId}`,{status: 'CURRENT'})
     }
 
     endRental(carId, rentalId) {
-         return http.put(`/cars/${carId}/rentals/${rentalId}`,
-        {data:{status: 'DONE'}})
+         return http.put(`/cars/${carId}/rentals/${rentalId}`,{status: 'DONE'})
+
     }
 
     updateRental(carId, rentalId,rental) {
