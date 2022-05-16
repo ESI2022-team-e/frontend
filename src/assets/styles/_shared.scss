@@ -60,6 +60,13 @@ h1 {
 
 table {
   border-bottom: 2px solid $primary;
+
+  &.request-table {
+    border-collapse: separate;
+    border: 0;
+    padding-bottom: 2px;
+    padding-top: 2px;
+  }
 }
 
 th {
@@ -74,4 +81,29 @@ tr {
 
 td {
   padding: 5px 10px 5px 10px;
+}
+
+// request
+
+
+.flex-div {
+  display: flex;
+
+  label {
+    min-width: 180px;
+  }
+  margin: 10px;
+}
+
+.request-profile {
+  width: 80%;
+  display: inline-block;
+  border: 2px solid $primary;
+  border-radius: 5px;
+  text-align: center;
+  margin: 10px;
+
+  Field {
+    width: 40%;
+  }
 }

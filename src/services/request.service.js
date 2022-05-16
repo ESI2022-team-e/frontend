@@ -32,14 +32,19 @@ class RequestService {
         })
     }
 
-    createRental(carId, rentalId) {
+    createRequest(carId, pickupdate, dropoffdate, pickuploc, dropoffloc) {
         return axios({
-            method: 'put',
+            method: 'post',
             url: API_BASE_URL +
                 '/cars/' + carId +
-                '/rentals/' + rentalId,
+                '/requests/',
             headers: authHeader(),
             data: {
+                car_id: carId,
+                pickupDatetime: pickupdate,
+                dropoffDatetime: dropoffdate,
+                pickupLocation: pickuploc,
+                dropoffLocation: dropoffloc,
                 status: 'UPCOMING'
             }
         })

@@ -40,11 +40,19 @@
             <router-link class="select-button" role="button"
                          :to="{ name: 'car', params: {id: car.id} }">DETAILS
             </router-link>
-            <router-link class="select-button" :class="{ 'disabled' : requestDisabled}" role="button"
-                         :to="{ name: 'car', params: {id: car.id} }">REQUEST
-            </router-link>
+            <button class="select-button" :class="{ 'disabled' : requestDisabled}" role="button"
+                    v-on:click="showRequestForm">REQUEST
+            </button>
           </div>
         </div>
+        <SendRequestContainer v-if="requestForm"
+                              :car-mark-model='car.mark + " " + car.model'
+                              :pickup-datetime='dates.pickupDatetime'
+                              :dropoff-datetime='dates.dropoffDatetime'
+                              :pickup-location='car'
+                              :car-id='car.id'
+                              :key='car.id'
+        ></SendRequestContainer>
       </div>
     </section>
   </div>
@@ -54,12 +62,14 @@
 
 import CarService from "@/services/car.service";
 import {ErrorMessage, Field, Form} from "vee-validate";
+import SendRequestContainer from "@/views/AddRequest";
 
 
 export default {
   name: 'CarsList',
 
   components: {
+    SendRequestContainer,
     Form,
     Field,
     ErrorMessage,
@@ -68,7 +78,9 @@ export default {
   data() {
     const cars = null
     const requestDisabled = false
-    return {cars, requestDisabled}
+    const requestForm = false
+    const dates = {}
+    return {cars, requestDisabled, requestForm, dates}
   },
 
   methods: {
@@ -77,6 +89,7 @@ export default {
       if (dates !== undefined)
         if (dates.pickupDatetime !== undefined && dates.dropoffDatetime !== undefined)
           this.requestDisabled = false
+      this.dates = dates
       CarService.getAllCars(dates).then(
           (response) => {
             this.cars = response.data;
@@ -90,11 +103,11 @@ export default {
                 error.toString();
           }
       );
-    }
-  },
+    },
 
-  enableRequest() {
-    return this.requestDisabled ? "" : "{ name: 'car', params: {id: car.id} }"
+    showRequestForm() {
+      this.reqestForm = true;
+    }
   },
 
   created() {
