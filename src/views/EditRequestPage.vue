@@ -67,10 +67,11 @@ export default {
     headers: ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id", "Customer Id"],
     request: null,
     notification: "",
-    pickupDatetime: null,
-    dropoffDatetime: null,
-    dropoffLocation: null,
     message: "",
+    form: {
+      pickupDatetime: null,
+      dropoffDatetime: null,
+      dropoffLocation: null}
     }
   },
 
@@ -104,11 +105,7 @@ export default {
     },
 
     updateRequest(){
-      const data = JSON.stringify({
-        pickupDatetime: this.pickupDatetime,
-        dropoffDatetime: this.dropoffDatetime,
-        dropoffLocation: this.dropoffLocation})
-      RequestService.updateRequest(data, this.requestId, this.request.car.id).then(
+      RequestService.updateRequest(this.form, this.requestId, this.request.car.id).then(
           (response) => {
             this.message = response.data;
             this.notifySuccess();

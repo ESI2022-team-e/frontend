@@ -110,7 +110,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
@@ -127,7 +127,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
@@ -144,7 +144,7 @@ export default {
           (response) => {
             this.notification = response.data;
             this.notifySuccess()
-            this.getRequest()
+            this.getAllRequests()
           },
           (error) => {
             this.content =
