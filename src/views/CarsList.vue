@@ -28,9 +28,9 @@
 
 
       <div class="car-profile" v-for="car in cars" :key="car.id">
-        <img alt="car_img" src="../assets/img/car-img.png" />
+        <img alt="car_img" src="../assets/img/car-img.png"/>
         <h2>
-          {{ car.mark }} <br />
+          {{ car.mark }} <br/>
           {{ car.model }}
         </h2>
         <div class="text">
@@ -48,14 +48,17 @@
             </button>
           </div>
         </div>
-        <SendRequestContainer v-if="requestForm"
-                              :car-mark-model='car.mark + " " + car.model'
-                              :pickup-datetime='dates.pickupDatetime'
-                              :dropoff-datetime='dates.dropoffDatetime'
-                              :pickup-location='car'
-                              :car-id='car.id'
-                              :key='car.id'
-        ></SendRequestContainer>
+        <div v-show="requestForm">
+          <SendRequestContainer
+              v-if="requestForm"
+              :car-mark-model='car.mark + " " + car.model'
+              :pickup-datetime='dates.pickupDatetime'
+              :dropoff-datetime='dates.dropoffDatetime'
+              :pickup-location='car'
+              :car-id='car.id'
+              :key='car.id'
+          ></SendRequestContainer>
+        </div>
       </div>
     </section>
   </div>

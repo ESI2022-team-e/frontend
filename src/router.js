@@ -115,7 +115,8 @@ const routes = [
         // lazy-loaded
         component: RentalPage,
         params: true
-
+    },
+    {
         path: "/cars/create",
         name: "createCar",
         component: CreateCarPage,
