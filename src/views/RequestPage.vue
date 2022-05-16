@@ -59,13 +59,13 @@ export default {
     headers: ["Id", "Pickup datetime", "Drop-off datetime", "Pickup location", "Drop-off location", "Status"],
     request: null,
     message: "",
-    minDatetime: null
+    minDatetime: null,
     }
   },
 
   methods: {
     getRequest(){
-      RequestService.getRequest(this.requestId, this.request.car.id).then(
+      RequestService.getRequest(this.requestId).then(
           (response) => {
             console.log(response);
             this.request = response.data;

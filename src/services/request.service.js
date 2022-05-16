@@ -17,8 +17,12 @@ class RequestService {
         return axios.get(API_BASE_URL + '/cars/' + carId + '/requests', {headers: authHeader()})
     }
 
-    getRequest(carId, requestId) {
+    getRequestByCarId(carId, requestId) {
         return axios.get(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {headers: authHeader()})
+    }
+
+    getRequest(requestId) {
+        return axios.get(API_BASE_URL + '/requests/' + requestId, {headers: authHeader()})
     }
 
     deleteRequest(carId, requestId) {
@@ -26,10 +30,7 @@ class RequestService {
     }
 
     updateRequest(request, requestId, carId) {
-        return axios.put(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {
-            headers: authHeader(),
-            data: {request}
-        })
+        return axios.put(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {headers: authHeader(), data: {request}})
     }
 
     createRental(carId, rentalId) {
