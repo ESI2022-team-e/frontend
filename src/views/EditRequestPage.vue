@@ -62,16 +62,16 @@ export default {
     }
   },
 
-  data() {
-    const requestId = this.$route.params.id
-    const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id", "Customer Id"]
-    const request = null
-    const notification = ""
-    const pickupDatetime = null
-    const dropoffDatetime = null
-    const dropoffLocation = null
-    const message = ""
-    return {requestId, headers, request, notification, pickupDatetime, dropoffDatetime, dropoffLocation, message}
+  data() { return {
+    requestId: this.$route.params.id,
+    headers: ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id", "Customer Id"],
+    request: null,
+    notification: "",
+    pickupDatetime: null,
+    dropoffDatetime: null,
+    dropoffLocation: null,
+    message: "",
+    }
   },
 
   methods: {
@@ -108,7 +108,7 @@ export default {
         pickupDatetime: this.pickupDatetime,
         dropoffDatetime: this.dropoffDatetime,
         dropoffLocation: this.dropoffLocation})
-      RequestService.updateRequest(this.request, data).then(
+      RequestService.updateRequest(data, this.requestId, this.request.car.id).then(
           (response) => {
             this.message = response.data;
             this.notifySuccess();
