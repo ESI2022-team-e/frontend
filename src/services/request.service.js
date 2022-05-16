@@ -26,7 +26,10 @@ class RequestService {
     }
 
     updateRequest(request, requestId, carId) {
-        return axios.put(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {headers: authHeader(), data: {request}})
+        return axios.put(API_BASE_URL + '/cars/' + carId + '/requests/' + requestId, {
+            headers: authHeader(),
+            data: {request}
+        })
     }
 
     createRental(carId, rentalId) {

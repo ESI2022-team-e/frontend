@@ -4,6 +4,7 @@ import authHeader from './auth-header';
 const API_BASE_URL = 'http://localhost:8081/api';
 
 class CarService {
+
     getAllCars(dates) {
         let add = ""
         // ?startTime=2022-05-08T20:25:59&endTime=2022-05-15T20:25:59
@@ -23,8 +24,16 @@ class CarService {
         return axios.delete(API_BASE_URL + '/cars/' + carId, {headers: authHeader()})
     }
 
-    updateCar(carId, car) {
-        return axios.put(API_BASE_URL + '/cars/' + carId, {headers: authHeader(), data: {car}})
+    updateCar(carId, updatedValues) {
+        return axios({
+            method: 'put',
+            url: API_BASE_URL + '/cars/' + carId,
+            headers: authHeader(),
+            data: {
+                'licence_plate': updatedValues.licence_plate,
+                'daily_cost': updatedValues.daily_cost
+            }
+        })
     }
 }
 

@@ -49,6 +49,7 @@
 import CarService from "@/services/car.service";
 import {ErrorMessage, Field, Form} from "vee-validate";
 
+
 export default {
   name: 'CarsList',
 
@@ -83,7 +84,7 @@ export default {
     }
   },
 
-  mounted() {
+  created() {
     this.getAllCars()
   }
 }
