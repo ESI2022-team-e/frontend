@@ -30,7 +30,8 @@ export default {
 
   data() {
     const cars = null
-    return {cars}
+    const requestEnabled = true
+    return {cars, requestEnabled}
   },
 
   methods: {
