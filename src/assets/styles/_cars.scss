@@ -3,41 +3,79 @@
 .car-profile {
   width: 100%;
   display: inline-block;
-  border: 1px solid #111111;
+  border: 2px solid $primary;
   border-radius: 5px;
   text-align: center;
   margin: 10px;
-}
 
-.car-profile img {
-  width: 40%;
-  height: 40%;
-  float: left;
-  margin: 20px;
-}
+  img {
+    width: 40%;
+    height: 40%;
+    float: left;
+    margin: 20px;
+  }
 
-.car-profile h2 {
-  font-size: 34px;
-  margin: 20px;
-}
+  h2 {
+    font-size: 34px;
+    margin: 20px;
+  }
 
-.car-profile p {
-  text-align: left;
-  margin-left: 35px;
-}
+  p {
+    text-align: left;
+    margin-left: 35px;
+  }
 
-.car-profile .text {
-  display: flex;
-  justify-content: space-between;
+  .text {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .select-button {
+  color: $primary;
   background-color: white;
   height: 55px;
   width: 190px;
   line-height: 10px;
   font-weight: bold;
   text-transform: uppercase;
-  border: 5px solid $primaryBorder;
+  border: 3px solid $primaryBorder;
+  border-radius: 0.25rem;
   margin: 15px 35px 15px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: $primaryBtn;
+    color: white;
+    text-underline: none;
+  }
+}
+
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
+.date-search {
+  display: flex;
+  padding: 10px;
+
+  div {
+    padding: 10px;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 12px;
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }

@@ -8,7 +8,10 @@
       </thead>
       <tbody>
       <tr v-for="item in items" :key='item'>
-        <td v-for="field in item" :key='field'>{{ field }}</td>
+        <td v-for="field in item" :key='field'>
+          <p v-if="field.id">{{field.id}}</p>
+          <p v-else>{{ field }}</p>
+          </td>
         <td>
           <router-link v-show=showButton class="btn btn-primary" role="button"
                        :to="{ name: page, params: {id: item.id} }"> {{ buttonText }}
