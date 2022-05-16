@@ -10,27 +10,27 @@
     ></VerticalTableComponent>
   </div>
   <br>
-  <form @submit="updateRequest">
+  <Form @submit="updateRequest">
     <div>
       <div class="form-group">
-        <label for="pickupDatetime">New pickup time:</label>
-        <input v-model="pickupDatetime" name="pickupDatetime" type="datetime-local"/>
+        <label for="pickupDatetime">New pickup date and time:</label>
+        <Field name="pickupDatetime" type="datetime-local" step=".10" min="{{this.minDatetime}}" class="form-control"/>
       </div>
       <div class="form-group">
-        <label for="dropoffDatetime">New dropoff time:</label>
-        <input v-model="dropoffDatetime" name="dropoffDatetime" type="datetime-local"/>
+        <label for="dropoffDatetime">New drop-off date and time:</label>
+        <Field name="dropoffDatetime" type="datetime-local" step=".10" min="{{this.minDatetime}}" class="form-control"/>
       </div>
       <div class="form-group">
-        <label for="dropoffLocation">New dropoff location:</label>
-        <input v-model="dropoffLocation" name="dropoffLocation" type="text"/>
+        <label for="dropoffLocation">New drop-off location:</label>
+        <Field name="dropoffLocation" type="text" class="form-control"/>
       </div>
     </div>
-  </form>
+  </Form>
 
-  <div class='container-with-padding'>
+  <div class='form-group'>
     <router-link class="btn btn-nav" role="button"
                  :to="{ name: 'requests'}">Back</router-link><div class="divider"/>
-    <button class="btn btn-nav" role="button" v-on:click='updateRequest'>Save changes</button>
+    <button class="btn btn-primary btn-block" role="button">Save changes</button>
   </div>
 </template>
 
@@ -39,11 +39,14 @@
 import RequestService from "@/services/request.service";
 import VerticalTableComponent from "@/components/VerticalTableComponent";
 import {notify} from "@kyvg/vue3-notification";
+import {Form, Field} from "vee-validate";
 
 export default {
   name: 'EditRequestPage',
   components: {
-    VerticalTableComponent
+    VerticalTableComponent,
+    Form,
+    Field
   },
   computed: {
     isManager () {
