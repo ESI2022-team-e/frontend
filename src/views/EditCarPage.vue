@@ -10,12 +10,18 @@
     ></VerticalTableComponent>
     </div>
     <br>
-    <p>Set a new licence plate:</p>
-    <input placeholder="" />
-    <br>
-    <br>
-    <p>Set a new daily cost:</p>
-    <input placeholder="" />
+    <v-form @submit="updateCar">
+            <div>
+              <div class="form-group">
+                <label for="licence_plate">Set new licence plate</label>
+                <v-field name="licence_plate" type="text" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="daily_cost">Set new daily cost</label>
+                <v-field name="daily_cost" type="number" class="form-control"/>
+              </div>
+            </div>
+    </v-form>
     <div class='container-with-padding'>
     <router-link class="btn btn-nav" role="button"
                        :to="{ name: 'cars'}">Back</router-link><div class="divider"/>
@@ -28,11 +34,12 @@
 import CarService from "@/services/car.service";
 import VerticalTableComponent from "@/components/VerticalTableComponent";
 import {notify} from "@kyvg/vue3-notification";
+import * as yup from "yup";
 
 export default {
   name: 'EditCarPage',
   components: {
-      VerticalTableComponent
+    VerticalTableComponent,
   },
   computed: {
       isManager () {
@@ -50,7 +57,11 @@ export default {
     const headers = {id: "Nr", daily_cost: "Daily cost", fuel_type: "Fuel type", licence_plate: "Licence plate", mark: "Mark", model: "Model", nr_of_seats: "No of seats", transmission_type: "Automatic", year: "Year" }
     const car = null
     const notification = ""
-    return {carId, headers, car, notification}
+    const schema = yup.object().shape({
+      licence_plate: yup.string(),
+      daily_cost: yup.number(),
+    });
+    return {carId, headers, car, notification, schema, message:""}
   },
 
   methods: { 
@@ -78,10 +89,10 @@ export default {
       });
     },
 
-    updateCar(){
-        CarService.updateCar(this.car).then(
+    updateCar(values){
+        CarService.updateCar(this.carId, JSON.stringify(values, null, 2)).then(
         (response) => {
-          this.car = response.data;
+          this.message = response.data;
         },
         (error) => {
           this.content =
@@ -90,6 +101,7 @@ export default {
                 error.response.data.message) ||
             error.message ||
             error.toString();
+            console.log(error);
         }
       );
     },
