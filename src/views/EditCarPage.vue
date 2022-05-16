@@ -18,7 +18,7 @@
               </div>
               <div class="form-group">
                 <label for="daily_cost">Set new daily cost</label>
-                <input type="number" v-model="formData.daily_cost" name="daily_cost" class="form-control" placeholder="Set a new daily cost" min="0"/>
+                <input type="number" v-model="formData.daily_cost" name="daily_cost" class="form-control" placeholder="Set a new daily cost"/>
               </div>
             </div>
             <input type="submit" v-if="isManager" class="btn btn-nav" value="Save changes"/>
@@ -96,6 +96,7 @@ export default {
     },
 
     updateCar(){
+      console.log(this.formData)
       CarService.updateCar(this.carId, this.formData).then(
         (response) => {
           this.notification = response.data;
