@@ -23,17 +23,17 @@ export default {
     TableComponent
   },
   data() {
-    const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id",
-      "Customer Id"]
+    const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status"]
     const requests = null
     const buttonText = "Details"
-    const page = "request"
+    const page = "requests"
     return {headers, requests, buttonText, page}
   },
   methods: {
     getAllRequests() {
       RequestService.getAllRequests().then(
           (response) => {
+            console.log(response.data);
             this.requests = response.data;
             localStorage.setItem('requests', response.data);
           },
