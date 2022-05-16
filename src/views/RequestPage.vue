@@ -8,19 +8,23 @@
         :headers='headers'
         :key='request'
     ></VerticalTableComponent>
-    <div v-if="isCustomer" class='container-with-padding'>
-      <router-link class="btn btn-nav" role="button"
-                   :to="{ name: 'requests'}">Back</router-link><div class="divider"/>
-      <router-link class="btn btn-nav" role="button"
-                   :to="{ name: 'requests', params: {id: request.id} }">Edit</router-link><div class="divider"/>
-      <button class="btn btn-nav" role="button" v-on:click='deleteRequest'>Delete</button>
+    <div class='container-with-padding'>
+      <template v-if="isCustomer">
+        <router-link class="btn btn-nav" role="button"
+                     :to="{ name: 'requests'}">Back</router-link><div class="divider"/>
+        <router-link class="btn btn-nav" role="button"
+                     :to="{ name: 'requests', params: {id: request.id} }">Edit</router-link><div class="divider"/>
+        <button class="btn btn-nav" role="button" v-on:click='deleteRequest'>Delete</button>
+      </template>
     </div>
-    <div v-if="isManager" class='container-with-padding'>
-      <router-link class="btn btn-nav" role="button"
+    <div class='container-with-padding'>
+      <template v-if="isManager">
+        <router-link class="btn btn-nav" role="button"
                    :to="{ name: 'requests'}">Back</router-link><div class="divider"/>
-      <button class="btn btn-nav" role="button" v-on:click='acceptRequest'>Accept</button>
-      <button class="btn btn-nav" role="button" v-on:click='rejectRequest'>Reject</button>
-      <button class="btn btn-nav" role="button" v-on:click='cancelRequest'>Cancel</button>
+        <button class="btn btn-nav" role="button" v-on:click='acceptRequest'>Accept</button><div class="divider"/>
+        <button class="btn btn-nav" role="button" v-on:click='rejectRequest'>Reject</button><div class="divider"/>
+        <button class="btn btn-nav" role="button" v-on:click='cancelRequest'>Cancel</button>
+      </template>
     </div>
   </div>
 </template>
@@ -59,7 +63,7 @@ export default {
   },
 
   methods: {
-    requestCar(){
+    getRequest(){
       RequestService.getRequest(this.requestId).then(
           (response) => {
             console.log(response);
@@ -84,10 +88,11 @@ export default {
     },
 
     deleteRequest() {
-      RequestService.deleteRequest(this.requestId).then(
+      RequestService.deleteRequest(this.request.carId, this.requestId).then(
           (response)=>{
             this.notification = response.data;
             this.notifySuccess()
+            this.$router.push("/requests");
           },
           (error) => {
             this.content =

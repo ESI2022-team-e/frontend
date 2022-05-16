@@ -22,11 +22,11 @@
   <input placeholder="" />
   <br>
   <br>
-  <div v-if="isManager">
-    <p>Set a new status:</p>
+  <template v-if="isManager">
+    <p>Update status:</p>
     <input placeholder="" />
-    <br>
-  </div>
+  </template>
+  <br>
   <div class='container-with-padding'>
     <router-link class="btn btn-nav" role="button"
                  :to="{ name: 'requests'}">Back</router-link><div class="divider"/>
@@ -48,6 +48,9 @@ export default {
   computed: {
     isManager () {
       return this.$store.state.auth.user.roles.includes("ROLE_MANAGER");
+    },
+    isCustomer () {
+      return this.$store.state.auth.user.roles.includes("ROLE_CUSTOMER");
     }
   },
   props:{
