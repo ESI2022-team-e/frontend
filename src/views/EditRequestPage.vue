@@ -10,22 +10,22 @@
     ></VerticalTableComponent>
   </div>
   <br>
-  <v-form @submit="updateRequest">
+  <form @submit="updateRequest">
     <div>
       <div class="form-group">
         <label for="pickupDatetime">New pickup time:</label>
-        <v-field name="pickupDatetime" type="text" class="form-control"/>
+        <input v-model="pickupDatetime" name="pickupDatetime" type="datetime"/>
       </div>
       <div class="form-group">
         <label for="dropoffDatetime">New dropoff time:</label>
-        <v-field name="dropoffDatetime" type="text" class="form-control"/>
+        <input v-model="dropoffDatetime" name="dropoffDatetime" type="datetime"/>
       </div>
       <div class="form-group">
         <label for="dropoffLocation">New dropoff location:</label>
-        <v-field name="dropoffLocation" type="text" class="form-control"/>
+        <input v-model="dropoffLocation" name="dropoffLocation" type="text"/>
       </div>
     </div>
-  </v-form>
+  </form>
 
   <div class='container-with-padding'>
     <router-link class="btn btn-nav" role="button"
@@ -39,7 +39,6 @@
 import RequestService from "@/services/request.service";
 import VerticalTableComponent from "@/components/VerticalTableComponent";
 import {notify} from "@kyvg/vue3-notification";
-import * as yup from "yup";
 
 export default {
   name: 'EditRequestPage',
@@ -65,13 +64,11 @@ export default {
     const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id", "Customer Id"]
     const request = null
     const notification = ""
-    const schema = yup.object().shape({
-      pickupDatetime: yup.date(),
-      dropoffDatetime: yup.date(),
-      dropoffLocation: yup.string(),
-    })
+    const pickupDatetime = null
+    const dropoffDatetime = null
+    const dropoffLocation = null
     const message = ""
-    return {requestId, headers, request, notification, schema, message}
+    return {requestId, headers, request, notification, pickupDatetime, dropoffDatetime, dropoffLocation, message}
   },
 
   methods: {
@@ -99,8 +96,12 @@ export default {
       });
     },
 
-    updateRequest(values){
-      RequestService.updateRequest(this.request, JSON.stringify(values, null, 3)).then(
+    updateRequest(){
+      const data = JSON.stringify({
+        pickupDatetime: this.pickupDatetime,
+        dropoffDatetime: this.dropoffDatetime,
+        dropoffLocation: this.dropoffLocation})
+      RequestService.updateRequest(this.request, data).then(
           (response) => {
             this.message = response.data;
           },
