@@ -1,6 +1,6 @@
 <template>
   <div id="request">
-    <h1>Request</h1>
+    <h1>Request </h1>
   </div>
   <div>
     <VerticalTableComponent
@@ -67,7 +67,7 @@ export default {
     getRequest(){
       RequestService.getRequest(this.requestId).then(
           (response) => {
-            console.log(response);
+            console.log(response.data);
             this.request = response.data;
           },
           (error) => {
@@ -106,6 +106,7 @@ export default {
       );
     },
     acceptRequest(){
+      console.log(this.request.car.id);
       RequestService.acceptRequest(this.request.car.id, this.requestId).then(
           (response) => {
             this.notification = response.data;

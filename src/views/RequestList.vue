@@ -23,10 +23,10 @@ export default {
     TableComponent
   },
   data() {
-    const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status"]
+    const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status","Car ID","Customer ID"]
     const requests = null
     const buttonText = "Details"
-    const page = "requests"
+    const page = "request"
     return {headers, requests, buttonText, page}
   },
   methods: {
