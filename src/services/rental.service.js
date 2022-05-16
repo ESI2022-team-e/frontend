@@ -27,9 +27,13 @@ class RentalService {
         return rental
     }
 
+    getRentalbyCar(carId,rentalId) {
+        let rental = http.get(`/cars/${carId}/rentals/${rentalId}`);
+        return rental
+    }
+
     startRental(carId, rentalId) {
-        return http.put(`/cars/${carId}/rentals/${rentalId}`,
-        {data:{status: 'CURRENT'}})
+        return http.put(`/cars/${carId}/rentals/${rentalId}`,{status: 'CURRENT'})
     }
 
     endRental(carId, rentalId) {

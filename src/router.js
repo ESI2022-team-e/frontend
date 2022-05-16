@@ -5,7 +5,8 @@ import UserRegister from "./views/UserRegister.vue";
 import InvoicesList from "./views/InvoicesList.vue";
 import InvoicePage from "./views/InvoicePage.vue";
 import RentalsList from "./views/RentalsList.vue";
-import RentalPage from "./views/RentalPage.vue";
+// import RentalPage from "./views/RentalPage.vue";
+import CarRentalsList from "./views/CarRentalsList.vue";
 
 
 // lazy-loaded
@@ -75,11 +76,18 @@ const routes = [
         // lazy-loaded
         component: RentalsList,
     },
+    // {
+    //     path: "/rental/:id",
+    //     name: "rental",
+    //     // lazy-loaded
+    //     component: RentalPage,
+    //     params: true
+    // },
     {
-        path: "/rental/:id",
-        name: "rental",
+        path: "/car/:car_id/rentals",
+        name: "carrentals",
         // lazy-loaded
-        component: RentalPage,
+        component: CarRentalsList,
         params: true
     }
 ];
