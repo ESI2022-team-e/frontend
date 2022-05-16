@@ -2,6 +2,9 @@ import {createRouter, createWebHistory} from "vue-router";
 import UserHome from "./views/UserHome.vue";
 import UserLogin from "./views/UserLogin.vue";
 import UserRegister from "./views/UserRegister.vue";
+import CarPage from "@/views/CarPage";
+import EditCarPage from "@/views/EditCarPage";
+import RequestList from "@/views/RequestList.vue";
 import InvoicesList from "./views/InvoicesList.vue";
 import InvoicePage from "./views/InvoicePage.vue";
 
@@ -54,6 +57,11 @@ const routes = [
         component: CarsList,
     },
     {
+        path: "/requests",
+        name: "requests",
+        component: RequestList,
+    },
+    {
         path: "/invoices",
         name: "invoices",
         // lazy-loaded
@@ -66,6 +74,18 @@ const routes = [
         component: InvoicePage,
         params: true
     },
+    {
+        path: "/car/:id",
+        name: "car",
+        component: CarPage,
+        params: true,
+    },
+    {
+        path: "/car/:id/edit",
+        name: "editCar",
+        component: EditCarPage,
+        params: true,
+    }
 ];
 const router = createRouter({
     history: createWebHistory(),
