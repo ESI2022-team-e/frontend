@@ -9,6 +9,9 @@ import RequestPage from "@/views/RequestPage.vue";
 import EditRequestPage from "@/views/EditRequestPage";
 import InvoicesList from "./views/InvoicesList.vue";
 import InvoicePage from "./views/InvoicePage.vue";
+import RentalsList from "./views/RentalsList.vue";
+import RentalPage from "./views/RentalPage.vue";
+
 
 // lazy-loaded
 const UserProfile = () => import("./views/UserProfile.vue")
@@ -99,6 +102,19 @@ const routes = [
         name: "editCar",
         component: EditCarPage,
         params: true,
+    },
+    {
+        path: "/rentals",
+        name: "rentals",
+        // lazy-loaded
+        component: RentalsList,
+    },
+    {
+        path: "/rental/:id",
+        name: "rental",
+        // lazy-loaded
+        component: RentalPage,
+        params: true
     }
 ];
 const router = createRouter({

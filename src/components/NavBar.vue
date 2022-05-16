@@ -16,13 +16,18 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link v-if="currentUser" to="/invoices" class="nav-link">
-            <i class="fa-solid fa-file-lines"></i> Invoices
+          <router-link v-if="currentUser" to="/requests" class="nav-link">
+            <i class="fa-solid fa-calendar-days"></i> Requests
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link v-if="currentUser" to="/requests" class="nav-link">
-            <i class="fa-solid fa-file-lines"></i> Requests
+          <router-link v-if="currentUser" to="/rentals" class="nav-link">
+            <i class="fa-solid fa-route"></i> Rentals
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link v-if="currentUser" to="/invoices" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i> Invoices
           </router-link>
         </li>
         <li v-if="showManagerBoard" class="nav-item">
