@@ -11,6 +11,7 @@
           v-model="formData.mark"
           class="form-input"
           name="mark"
+          required
         />
       </div>
       <div class="form-group">
@@ -20,6 +21,7 @@
           v-model="formData.model"
           class="form-input"
           name="model"
+          required
         />
       </div>
       <div class="form-group">
@@ -29,6 +31,7 @@
           v-model="formData.nr_of_seats"
           class="form-input"
           name="nr_of_seats"
+          required
         />
       </div>
       <div class="form-group">
@@ -38,6 +41,7 @@
           v-model="formData.transmission_type"
           class="form-input"
           name="transmission_type"
+          required
         />
       </div>
       <div class="form-group">
@@ -47,6 +51,7 @@
           v-model="formData.fuel_type"
           class="form-input"
           name="fuel_type"
+          required
         />
       </div>
       <div class="form-group">
@@ -56,6 +61,7 @@
           v-model="formData.daily_cost"
           class="form-input"
           name="daily_cost"
+          required
         />
       </div>
       <div class="form-group">
@@ -65,6 +71,7 @@
           v-model="formData.year"
           class="form-input"
           name="year"
+          required
         />
       </div>
       <div class="form-group">
@@ -74,6 +81,7 @@
           v-model="formData.licence_plate"
           class="form-input"
           name="licence_plate"
+          required
         />
       </div>
     </div>
@@ -82,6 +90,7 @@
       v-if="isManager"
       class="btn btn-nav"
       value="Save changes"
+      required
     />
   </Form>
   <div class="container-with-padding">
@@ -130,6 +139,10 @@ export default {
 
   methods: {
     addCar() {
+      if (this.formData.mark===null || this.formData.model===null || this.formData.nr_of_seats===null || this.formData.transmission_type===null || this.formData.fuel_type===null
+      || this.formData.daily_cost===null || this.formData.year===null || this.formData.licence_plate===null){
+        this.content === "Values cannot be null"
+      }
       CarService.addCar(this.formData).then(
         (response) => {
           console.log(response);
