@@ -20,6 +20,9 @@ class RentalService {
         return http.get(
             `/cars/${carId}/rentals`)
     }
+    getRentalsByCustomer(customerId){
+        return http.get(`/customers/${customerId}/rentals`)
+    }
 
     getRental(rentalId) {
         let user = JSON.parse(localStorage.getItem('user'));
