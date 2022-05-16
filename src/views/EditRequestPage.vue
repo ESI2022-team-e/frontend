@@ -10,23 +10,23 @@
     ></VerticalTableComponent>
   </div>
   <br>
-  <p>Set a new pickup time:</p>
-  <input placeholder="" />
-  <br>
-  <br>
-  <p>Set a new dropoff time:</p>
-  <input placeholder="" />
-  <br>
-  <br>
-  <p>Set a new dropoff location:</p>
-  <input placeholder="" />
-  <br>
-  <br>
-  <template v-if="isManager">
-    <p>Update status:</p>
-    <input placeholder="" />
-  </template>
-  <br>
+  <form @submit="updateRequest">
+    <div>
+      <div class="form-group">
+        <label for="pickupDatetime">New pickup time:</label>
+        <input v-model="pickupDatetime" name="pickupDatetime" type="datetime-local"/>
+      </div>
+      <div class="form-group">
+        <label for="dropoffDatetime">New dropoff time:</label>
+        <input v-model="dropoffDatetime" name="dropoffDatetime" type="datetime-local"/>
+      </div>
+      <div class="form-group">
+        <label for="dropoffLocation">New dropoff location:</label>
+        <input v-model="dropoffLocation" name="dropoffLocation" type="text"/>
+      </div>
+    </div>
+  </form>
+
   <div class='container-with-padding'>
     <router-link class="btn btn-nav" role="button"
                  :to="{ name: 'requests'}">Back</router-link><div class="divider"/>
@@ -64,7 +64,11 @@ export default {
     const headers = ["Id", "Pickup datetime", "Dropoff datetime", "Pickup location", "Dropoff location", "Status", "Car Id", "Customer Id"]
     const request = null
     const notification = ""
-    return {requestId, headers, request, notification}
+    const pickupDatetime = null
+    const dropoffDatetime = null
+    const dropoffLocation = null
+    const message = ""
+    return {requestId, headers, request, notification, pickupDatetime, dropoffDatetime, dropoffLocation, message}
   },
 
   methods: {
@@ -93,9 +97,13 @@ export default {
     },
 
     updateRequest(){
-      RequestService.updateRequest(this.request).then(
+      const data = JSON.stringify({
+        pickupDatetime: this.pickupDatetime,
+        dropoffDatetime: this.dropoffDatetime,
+        dropoffLocation: this.dropoffLocation})
+      RequestService.updateRequest(this.request, data).then(
           (response) => {
-            this.request = response.data;
+            this.message = response.data;
           },
           (error) => {
             this.content =
