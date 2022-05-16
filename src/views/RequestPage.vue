@@ -54,12 +54,13 @@ export default {
     }
   },
 
-  data() {
-    const requestId = this.$route.params.id
-    const headers = ["Id", "Pickup datetime", "Drop-off datetime", "Pickup location", "Drop-off location", "Status"]
-    const request = null
-    const notification = ""
-    return {requestId, headers, request, notification}
+  data() { return {
+    requestId: this.$route.params.id,
+    headers: ["Id", "Pickup datetime", "Drop-off datetime", "Pickup location", "Drop-off location", "Status"],
+    request: null,
+    message: "",
+    minDatetime: null
+    }
   },
 
   methods: {
