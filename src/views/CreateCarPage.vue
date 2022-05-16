@@ -101,12 +101,16 @@
   </div>
 </template>
 <script>
+
+import {Form} from "vee-validate";
 import CarService from "@/services/car.service";
 import { notify } from "@kyvg/vue3-notification";
 
 export default {
   name: "CreateCarPage",
-  components: {},
+  components: {
+    Form
+  },
   computed: {
     isManager() {
       return this.$store.state.auth.user.roles.includes("ROLE_MANAGER");
