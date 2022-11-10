@@ -1,0 +1,109 @@
+/*
+This file contains global styles that
+we intend to use throughout the project.
+*/
+
+/*
+We can import the variables from one file
+that contains all the variables.
+*/
+@import '_variables.scss';
+
+.btn {
+  padding: 3px 10px 5px 10px;
+  color: #ffffff;
+
+  &.btn-primary {
+    background-color: $primaryBtn;
+    border-color: $primaryBorder;
+  }
+
+  &.btn-danger {
+    background-color: $dangerBtn;
+    border-color: $dangerBorder;
+  }
+
+  &.btn-nav {
+    background-color: #007bff;
+  }
+
+  &:hover {
+    color: #111111;
+  }
+}
+
+.btn-primary.btn-block {
+  background-color: $primaryBtn;
+  border-color: $primaryBorder;
+}
+
+.btn-success {
+  background-color: $primaryBtn;
+  border-color: $primaryBorder;
+}
+
+a.btn.btn-primary.btn-lg {
+  background-color: $primaryBtn;
+  border-color: $primaryBorder;
+}
+
+.error-feedback {
+  color: $errorColor;
+}
+
+h1 {
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 20px;
+}
+
+table {
+  border-bottom: 2px solid $primary;
+
+  &.request-table {
+    border-collapse: separate;
+    border: 0;
+    padding-bottom: 2px;
+    padding-top: 2px;
+  }
+}
+
+th {
+  color: $primary;
+  padding: 5px 10px 5px 10px;
+}
+
+tr {
+  border-top: 2px solid $primary;
+  border-bottom: 2px solid $primary;
+}
+
+td {
+  padding: 5px 10px 5px 10px;
+}
+
+// request
+
+
+.flex-div {
+  display: flex;
+
+  label {
+    min-width: 180px;
+  }
+  margin: 10px;
+}
+
+.request-profile {
+  width: 80%;
+  display: inline-block;
+  border: 2px solid $primary;
+  border-radius: 5px;
+  text-align: center;
+  margin: 10px;
+
+  Field {
+    width: 40%;
+  }
+}
