@@ -1,19 +1,18 @@
 <template>
-  <div id="app">
-    <NavBar/>
-  </div>
-  <notifications position="top center"/>
+  <side-bar></side-bar>
+  <router-view></router-view>
 </template>
 
 <script>
-import NavBar from "@/components/NavBar";
+import SideBar from './components/SideBar.vue'
+
 
 export default {
   name: 'App',
+
   components: {
-    NavBar
-  },
+      SideBar
+    },
+
 };
 </script>
-
-<style lang="scss"></style>
